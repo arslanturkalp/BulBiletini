@@ -1,4 +1,4 @@
-package com.alparslanturk.kombineapp.domain.entities.responses.item
+package com.alparslanturk.kombineapp.data.entities.models
 
 data class Token(
     val accessToken: String,

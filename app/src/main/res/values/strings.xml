@@ -34,11 +34,25 @@
     <string name="date_of_birth">Doğum Tarihi</string>
     <string name="phone">Telefon</string>
     <string name="register">Kayıt Ol</string>
-    <string name="login">Giriş</string>
+    <string name="login">Giriş Yap</string>
     <string name="change_password">Şifreyi Değiştir</string>
     <string name="verification_code">Doğrulama Kodu</string>
     <string name="send_code">Kod Gönder</string>
     <string name="forgot_password_description">Mailinize gönderilen kodu giriniz ve bilgileri doldurunuz.</string>
     <string name="forgot_password">Şifremi Unuttum</string>
     <string name="internet_connection_problem">Internet connection error!</string>
+    <string name="tl_format">%1$s ₺</string>
+    <string name="upcoming_matches">Yaklaşan Maçlar</string>
+    <string name="empty_match">Yaklaşan maç bulunamadı.</string>
+    <string name="empty_ticket">Bilet bulunamadı.</string>
+    <string name="create_ticket">Bilet Oluştur</string>
+    <string name="tribune">Tribün</string>
+    <string name="block">Blok</string>
+    <string name="order">Sıra</string>
+    <string name="select_match">Maç Seç</string>
+    <string name="select_tariff">Tarife Seç</string>
+    <string name="price">Fiyat</string>
+    <string name="description">Açıklama</string>
+    <string name="select">Seç</string>
+    <string name="tariffs">Tarifeler</string>
 </resources>

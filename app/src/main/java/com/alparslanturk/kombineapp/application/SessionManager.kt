@@ -29,7 +29,7 @@ object SessionManager {
     private var token: String = ""
     private var refreshToken: String = ""
 
-    private var userID: Int = 0
+    private var userID: String = ""
     private var score: Int = 0
     private var wrongCount: Int = 0
 
@@ -49,7 +49,7 @@ object SessionManager {
         unknownImage = Hawk.get(KEY_UNKNOWN_IMAGE, "")
         token = Hawk.get(KEY_TOKEN, "")
         refreshToken = Hawk.get(KEY_REFRESH_TOKEN, "")
-        userID = Hawk.get(KEY_USER_ID, 0)
+        userID = Hawk.get(KEY_USER_ID, "")
         score = Hawk.get(KEY_SCORE, 0)
         wrongCount = Hawk.get(KEY_WRONG_COUNT, 0)
         userName = Hawk.get(KEY_USER_NAME, "")
@@ -107,17 +107,17 @@ object SessionManager {
         updateRefreshToken("")
     }
 
-    fun updateUserID(value: Int) {
+    fun updateUserID(value: String) {
         Hawk.put(KEY_USER_ID, value)
         userID = value
     }
 
     fun getUserID() = userID
 
-    fun isAdminUser() = getUserID() == 13
+    fun isAdminUser() = getUserID() == ""
 
     fun clearUserID() {
-        updateUserID(0)
+        updateUserID("")
     }
 
     fun updateScore(value: Int) {

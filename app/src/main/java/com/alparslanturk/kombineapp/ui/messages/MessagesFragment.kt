@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import com.alparslanturk.kombineapp.R
 import com.alparslanturk.kombineapp.databinding.FragmentMessagesBinding
 import com.alparslanturk.kombineapp.ui.base.BaseFragment
+import com.alparslanturk.kombineapp.ui.main.MainActivity
 
 class MessagesFragment : BaseFragment() {
 
@@ -21,11 +23,26 @@ class MessagesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    backToMainMenu()
+                }
+            })
     }
 
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.messages))
+        }
+    }
+
+    private fun backToMainMenu() {
+        (activity as MainActivity).apply {
+            showFragment(homeFragment)
+            setItemInNavigation(homeFragment)
         }
     }
 }

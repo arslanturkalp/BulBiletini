@@ -6,8 +6,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.alparslanturk.kombineapp.R
+import com.alparslanturk.kombineapp.application.SessionManager.getPassword
+import com.alparslanturk.kombineapp.application.SessionManager.getUserName
+import com.alparslanturk.kombineapp.application.SessionManager.updatePassword
 import com.alparslanturk.kombineapp.application.SessionManager.updateRefreshToken
 import com.alparslanturk.kombineapp.application.SessionManager.updateToken
+import com.alparslanturk.kombineapp.application.SessionManager.updateUserID
 import com.alparslanturk.kombineapp.application.SessionManager.updateUserName
 import com.alparslanturk.kombineapp.data.entities.models.Result
 import com.alparslanturk.kombineapp.databinding.ActivityLoginBinding
@@ -17,6 +21,7 @@ import com.alparslanturk.kombineapp.ui.main.MainActivity
 import com.alparslanturk.kombineapp.ui.register.RegisterActivity
 import com.alparslanturk.kombineapp.ui.verificationcode.VerificationCodeActivity
 import com.alparslanturk.kombineapp.utils.addOnBackPressedListener
+import com.alparslanturk.kombineapp.utils.setTextUnderLine
 import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -36,7 +41,10 @@ class LoginActivity : BaseActivity() {
 
         addOnBackPressedListener {
             finishAffinity()
-            //showAlertDialogTheme(getString(R.string.quit_game), getString(R.string.game_close_alert), showNegativeButton = true, onPositiveButtonClick = { finishAndRemoveTask() })
+        }
+
+        if (getUserName() != "" && getPassword() != "") {
+            navigateToMain()
         }
 
         binding.apply {
@@ -44,7 +52,10 @@ class LoginActivity : BaseActivity() {
                 viewModel.signIn(LoginRequest(edtUserName.text.toString(), edtPassword.text.toString()))
             }
             btnRegister.setOnClickListener { navigateToRegister() }
-            btnForgotPassword.setOnClickListener { navigateToGetVerificationCode() }
+            tvForgotMyPassword.apply {
+                setTextUnderLine()
+                setOnClickListener { navigateToGetVerificationCode() }
+            }
         }
     }
 
@@ -64,7 +75,9 @@ class LoginActivity : BaseActivity() {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
                                     it.body.data.apply {
+                                        updateUserID(id)
                                         updateUserName(username)
+                                        updatePassword(binding.edtPassword.text.toString())
                                         updateToken(token.accessToken)
                                         updateRefreshToken(token.refreshToken)
                                         navigateToMain()

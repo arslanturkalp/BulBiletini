@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llCard"
+    style="@style/ClickableView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_rounded"
+    android:elevation="4dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivHome"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:elevation="8dp"
+            android:src="@color/primary" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivAway"
+            android:layout_width="24dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="-8dp"
+            android:elevation="8dp"
+            android:src="@color/light_green" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMatchName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/arrow_color"
+        tools:text="Galatasaray - Fenerbahçe" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="16dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@color/green"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTotalTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            tools:text="300" />
+
+    </FrameLayout>
+
+</LinearLayout>

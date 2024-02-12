@@ -3,6 +3,7 @@
     <style name="Base.Theme.KombineApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorSecondaryContainer">@color/light_green</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
     <style name="Theme.KombineApp" parent="Base.Theme.KombineApp" />
@@ -27,6 +28,44 @@
     <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorAccent">@color/grey</item>
+    </style>
+
+    <style name="FormEditText">
+        <item name="android:background">@drawable/bg_rounded</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:colorActivatedHighlight">@color/primary</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="FormEditText.Spinner">
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:selectAllOnFocus">false</item>
+        <item name="android:textIsSelectable">false</item>
+    </style>
+
+    <style name="FormEditText.Spinner.DropDown">
+        <item name="android:drawableEnd">@drawable/ic_arrow_down</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="BottomSheetButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/text_selector_default_green</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
     </style>
 
 </resources>

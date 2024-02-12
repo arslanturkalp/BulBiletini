@@ -49,7 +49,7 @@
                     android:id="@+id/tvUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/manrope_bold"
+                    android:fontFamily="@font/lato_bold"
                     android:text="@string/user_name"
                     android:textColor="@color/arrow_color"
                     android:textSize="17sp" />
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:fontFamily="@font/manrope_light"
+                    android:fontFamily="@font/lato_light"
                     android:text="@string/approved_user"
                     android:textColor="@color/arrow_color"
                     android:textSize="14sp" />
@@ -79,11 +79,13 @@
                 android:paddingBottom="210dp">
 
                 <LinearLayout
+                    android:id="@+id/llBuyTariff"
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:backgroundTint="@color/green"
-                    style="@style/ClickableView"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -92,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/buy_doping"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -105,12 +107,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
                     android:gravity="center_vertical"
-                    style="@style/ClickableView"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -118,9 +120,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/update_account_info"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -132,11 +134,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llMyTickets"
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    style="@style/ClickableView"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -145,9 +149,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/adverts"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -159,11 +163,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    style="@style/ClickableView"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -172,9 +176,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/comments"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -186,11 +190,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llMyTariffs"
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    style="@style/ClickableView"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -199,9 +205,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/dopings"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -213,10 +219,10 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
-                    style="@style/ClickableView"
                     android:background="@drawable/bg_rounded"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -226,9 +232,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/be_safe_user"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -240,10 +246,10 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
-                    style="@style/ClickableView"
                     android:background="@drawable/bg_rounded"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -253,9 +259,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/blocked_users"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -268,12 +274,12 @@
 
                 <LinearLayout
                     android:id="@+id/llSignOut"
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
                     android:foreground="@drawable/bg_ripple_effect"
-                    style="@style/ClickableView"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -282,9 +288,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:textColor="@color/arrow_color"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/log_out"
+                        android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -297,13 +303,13 @@
 
                 <LinearLayout
                     android:id="@+id/llDeleteAccount"
+                    style="@style/ClickableView"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    android:foreground="@drawable/bg_ripple_effect"
                     android:backgroundTint="@color/red"
-                    style="@style/ClickableView"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -312,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:text="@string/delete_account"
                         android:textColor="@color/white"
                         android:textSize="17sp" />

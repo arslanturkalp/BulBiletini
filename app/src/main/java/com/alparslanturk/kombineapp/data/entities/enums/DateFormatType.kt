@@ -16,5 +16,6 @@ enum class DateFormatType(val format: String) {
     DATE_TIME_WITH_SLASH("dd/MM/yyyy HH:mm"),
     DATE_WITH_DASH("dd-MM-yyyy"),
     DATE_TIME_WITH_DASH("dd-MM-yyyy HH:mm"),
-    DATE_TIME_YEAR_MONTH_DAY("yyyy:MM:dd HH:mm:SS")
+    DATE_TIME_YEAR_MONTH_DAY("yyyy:MM:dd HH:mm:SS"),
+    DATE_TIME("yyyy-MM-dd'T'HH:mm:ss")
 }

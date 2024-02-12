@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    tools:ignore="UnusedAttribute">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSelectionName"
+        style="@style/BottomSheetButton"
+        tools:text="Selection Data " />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".11"
+        android:background="@color/primary" />
+
+</LinearLayout>

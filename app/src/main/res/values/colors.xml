@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primary">#388E3C</color>
+    <color name="green_light">#87BB8A</color>
 
     <color name="ticket_bg_color">#FFFFFF</color>
     <color name="bg_color">#E9E9E9</color>
@@ -12,5 +13,6 @@
     <color name="grey">#999999</color>
     <color name="green">#388E3C</color>
     <color name="red">#D83F31</color>
+    <color name="red_light">#E3786E</color>
     <color name="light_green">#EBF3EB</color>
 </resources>

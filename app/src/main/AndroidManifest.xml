@@ -24,12 +24,15 @@
 
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity android:name=".ui.register.RegisterActivity" />
@@ -38,7 +41,11 @@
         <activity android:name=".ui.userdelete.UserDeleteActivity" />
         <activity android:name=".ui.teams.TeamsActivity" />
         <activity android:name=".ui.teamdetail.TeamDetailActivity" />
+        <activity android:name=".ui.matchdetail.MatchDetailActivity" />
         <activity android:name=".ui.ticketdetail.TicketDetailActivity" />
+        <activity android:name=".ui.settings.tickets.TicketsActivity" />
+        <activity android:name=".ui.home.createticket.CreateTicketActivity" />
+        <activity android:name=".ui.settings.tariffs.TariffsActivity" />
     </application>
 
 </manifest>

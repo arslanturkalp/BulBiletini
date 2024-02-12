@@ -1,6 +1,6 @@
 package com.alparslanturk.kombineapp.domain.entities.responses.user.login
 
-import com.alparslanturk.kombineapp.domain.entities.responses.item.Token
+import com.alparslanturk.kombineapp.data.entities.models.Token
 
 data class LoginResponseItem(
     val id: String,

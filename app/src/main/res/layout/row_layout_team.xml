@@ -11,7 +11,6 @@
     android:elevation="4dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:outlineProvider="bounds"
     android:padding="16dp">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -27,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_weight="1"
+        android:fontFamily="@font/lato_bold"
         android:textColor="@color/arrow_color"
-        android:fontFamily="@font/manrope_semi_bold"
         tools:text="Galatasaray" />
 
     <FrameLayout
@@ -49,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/manrope_semi_bold"
+            android:fontFamily="@font/lato_bold"
             android:textColor="@color/white"
             android:textSize="13sp"
             tools:text="300" />

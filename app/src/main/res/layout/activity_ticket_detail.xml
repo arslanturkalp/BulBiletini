@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_detail_ticket"
+            android:baselineAligned="false"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -50,32 +51,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/manrope_semi_bold"
+                    android:fontFamily="@font/lato_bold"
                     android:textColor="@color/black"
                     tools:text="Galatasaray" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_weight="0.36"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="16dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivTournament"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
                     tools:src="@color/black" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/manrope_semi_bold"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/lato_bold"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     tools:text="20.09.2023\nÇarşamba\n19:45" />
@@ -84,8 +86,11 @@
                     android:id="@+id/tvStadium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/manrope_semi_bold"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     tools:text="Rams Park" />
 
@@ -94,7 +99,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -109,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/manrope_semi_bold"
+                    android:fontFamily="@font/lato_bold"
                     android:textColor="@color/black"
                     tools:text="Kopenhag" />
 
@@ -118,7 +123,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="16dp"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -139,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         tools:text="30°" />
@@ -172,8 +177,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="120dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="120dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -194,7 +199,7 @@
                             android:id="@+id/tvSeller"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/manrope_semi_bold"
+                            android:fontFamily="@font/lato_bold"
                             android:textSize="14sp"
                             tools:text="Ömer İhsan Oğuz" />
 
@@ -243,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_messages"
-                            android:tint="@color/white"/>
+                            android:tint="@color/white" />
 
                     </FrameLayout>
 
@@ -260,7 +265,7 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:textColor="@color/arrow_color"
                         android:textSize="20sp"
                         tools:text="1500" />
@@ -285,7 +290,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:padding="16dp"
                         android:text="@string/notify_advert"
                         android:textColor="@color/arrow_color"
@@ -305,14 +310,14 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="24dp"
-                        android:tint="@color/green"
-                        android:src="@drawable/ic_stadium" />
+                        android:src="@drawable/ic_stadium"
+                        android:tint="@color/green" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:padding="16dp"
                         android:text="@string/stadium_plan"
                         android:textColor="@color/arrow_color"
@@ -322,10 +327,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="32dp"
@@ -338,7 +344,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:padding="16dp"
                         android:textColor="@color/arrow_color"
                         android:textSize="16sp"
@@ -351,7 +357,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="32dp"
@@ -364,7 +371,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/manrope_semi_bold"
+                        android:fontFamily="@font/lato_bold"
                         android:padding="16dp"
                         android:textColor="@color/arrow_color"
                         android:textSize="14sp"

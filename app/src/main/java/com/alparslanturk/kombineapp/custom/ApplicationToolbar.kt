@@ -5,7 +5,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import com.alparslanturk.kombineapp.R
 import com.alparslanturk.kombineapp.databinding.LayoutAppToolbarBinding
+import com.alparslanturk.kombineapp.utils.setVisible
 
 class ApplicationToolbar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
@@ -24,8 +26,19 @@ class ApplicationToolbar @JvmOverloads constructor(context: Context, attrs: Attr
 
     fun setBackButton(onClick: () -> Unit) {
         binding.ivBack.apply {
-            visibility = View.VISIBLE
+            setVisible()
             setOnClickListener { onClick.invoke() }
+        }
+    }
+
+    fun setFavouriteButton(isFavourite: Boolean, onClick: () -> Unit) {
+        binding.ivFavourite.apply {
+            if (isFavourite) setImageResource(R.drawable.ic_favourite) else setImageResource(R.drawable.ic_not_favourite)
+            setVisible()
+            setOnClickListener {
+                if (isFavourite) setImageResource(R.drawable.ic_not_favourite) else setImageResource(R.drawable.ic_favourite)
+                onClick.invoke()
+            }
         }
     }
 }

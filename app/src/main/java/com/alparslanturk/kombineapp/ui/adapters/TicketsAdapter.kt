@@ -1,9 +1,11 @@
-package com.alparslanturk.kombineapp.ui.home.adapters
+package com.alparslanturk.kombineapp.ui.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.alparslanturk.kombineapp.R
+import com.alparslanturk.kombineapp.application.Constants
 import com.alparslanturk.kombineapp.data.entities.models.Ticket
 import com.alparslanturk.kombineapp.databinding.RowLayoutTicketBinding
 import com.bumptech.glide.Glide
@@ -14,7 +16,7 @@ class TicketsAdapter(private val onItemClick: (Ticket) -> Unit) : RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketsViewHolder = TicketsViewHolder(RowLayoutTicketBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holder: TicketsAdapter.TicketsViewHolder, position: Int) = holder.bind(dataList[position])
+    override fun onBindViewHolder(holder: TicketsViewHolder, position: Int) = holder.bind(dataList[position])
 
     override fun getItemCount(): Int = dataList.size
 
@@ -30,13 +32,15 @@ class TicketsAdapter(private val onItemClick: (Ticket) -> Unit) : RecyclerView.A
         fun bind(item: Ticket) {
             with(binding) {
                 ivHome.apply {
-                    Glide.with(context).load(item.homeLogo).into(this)
+                    Glide.with(context).load("${Constants.BASE_URL}${item.homeTeamLogo}").into(this)
                 }
                 ivAway.apply {
-                    Glide.with(context).load(item.awayLogo).into(this)
+                    Glide.with(context).load("${Constants.BASE_URL}${item.awayTeamLogo}").into(this)
                 }
-                tvMatchName.text = "${item.homeTeam} - ${item.awayTeam}"
-                tvPrice.text = item.price
+                tvMatchName.text = "${item.homeTeamName} - ${item.awayTeamName}"
+                tvPrice.apply {
+                    text = String.format(context.getString(R.string.tl_format), item.price.toString())
+                }
                 tvComment.text = item.location
 
                 itemView.setOnClickListener { onItemClick.invoke(item) }

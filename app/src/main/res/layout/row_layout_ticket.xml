@@ -4,20 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp"
     android:layout_marginTop="8dp"
+    android:layout_marginEnd="4dp"
     android:layout_marginBottom="8dp"
     android:background="@drawable/bg_ticket"
     android:backgroundTint="@color/ticket_bg_color"
-    android:elevation="4dp"
+    android:foreground="?attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:outlineProvider="bounds">
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -30,7 +29,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivAway"
             android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_height="21dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="-8dp"
             android:elevation="8dp"
@@ -42,6 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -49,9 +49,9 @@
             android:id="@+id/tvMatchName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/manrope_semi_bold"
-            android:textSize="14sp"
+            android:fontFamily="@font/lato_bold"
             android:textColor="@color/arrow_color"
+            android:textSize="14sp"
             tools:text="Galatasaray - Kopenhag" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -59,9 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:fontFamily="@font/manrope_regular"
-            android:textSize="12sp"
+            android:ellipsize="end"
+            android:fontFamily="@font/lato_regular"
+            android:maxLines="1"
             android:textColor="@color/arrow_color"
+            android:textSize="12sp"
             tools:text="Kuzey Alt 107-6" />
 
     </LinearLayout>
@@ -71,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
+        android:fontFamily="@font/lato_bold"
         android:textColor="@color/arrow_color"
         tools:text="1800₺" />
 

@@ -4,20 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alparslanturk.kombineapp.R
-import com.alparslanturk.kombineapp.data.entities.models.Team
+import com.alparslanturk.kombineapp.application.SessionManager.getUserID
+import com.alparslanturk.kombineapp.data.entities.models.Club
+import com.alparslanturk.kombineapp.data.entities.models.Result
 import com.alparslanturk.kombineapp.data.entities.models.Ticket
 import com.alparslanturk.kombineapp.databinding.FragmentFavouritesBinding
+import com.alparslanturk.kombineapp.ui.adapters.HomeTeamsAdapter
+import com.alparslanturk.kombineapp.ui.adapters.TicketsAdapter
 import com.alparslanturk.kombineapp.ui.base.BaseFragment
-import com.alparslanturk.kombineapp.ui.home.adapters.HomeTeamsAdapter
-import com.alparslanturk.kombineapp.ui.home.adapters.TicketsAdapter
+import com.alparslanturk.kombineapp.ui.main.MainActivity
 import com.alparslanturk.kombineapp.ui.teamdetail.TeamDetailActivity
 import com.alparslanturk.kombineapp.ui.ticketdetail.TicketDetailActivity
+import com.alparslanturk.kombineapp.utils.setGone
+import com.alparslanturk.kombineapp.utils.setVisible
+import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-class FavouritesFragment : BaseFragment() {
+@AndroidEntryPoint
+class FavouritesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
+
+    private val viewModel by viewModels<FavouritesViewModel>()
 
     private val teamsAdapter by lazy { HomeTeamsAdapter { navigateToTeamDetail(it) } }
 
@@ -32,8 +47,19 @@ class FavouritesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+        setupSwipeRefresh()
         setupRecyclerViews()
-        setupTeamsList()
+        setupObservers()
+
+        viewModel.getFavourites(getUserID())
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    backToMainMenu()
+                }
+            })
     }
 
     private fun setupToolbar() {
@@ -41,6 +67,8 @@ class FavouritesFragment : BaseFragment() {
             setTitle(getString(R.string.favourites))
         }
     }
+
+    private fun setupSwipeRefresh() = binding.swipeRefreshLayout.setOnRefreshListener(this)
 
     private fun setupRecyclerViews() {
         with(binding) {
@@ -55,14 +83,59 @@ class FavouritesFragment : BaseFragment() {
         }
     }
 
-    private fun setupTeamsList() {
-        val list = listOf(
-            Team("1", "Fenerbahçe", "#FFED00", "#163962", "https://seeklogo.com/images/F/fenerbahce-spor-kulubu-5-yildizli-arma-logo-64F337AD4A-seeklogo.com.png", "100"),
-        )
-        teamsAdapter.updateAdapter(list)
+    private fun setupObservers() {
+        lifecycleScope.launch {
+            viewModel.apply {
+                launch {
+                    getFavouritesFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                dismissProgress()
+                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+
+                            is Result.Success -> {
+                                dismissProgress()
+                                if (it.body!!.code == 300) {
+                                    showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
+                                } else {
+                                    it.body.data.apply {
+                                        teamsAdapter.updateAdapter(clubList)
+                                        ticketsAdapter.updateAdapter(ticketList)
+                                        if (clubList.isEmpty()) binding.tvNotFavouriteTeam.setVisible() else binding.tvNotFavouriteTeam.setGone()
+                                        if (ticketList.isEmpty()) binding.tvNotFavouriteTicket.setVisible() else binding.tvNotFavouriteTicket.setGone()
+                                    }
+                                }
+                            }
+                            is Result.Auth -> {}
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    private fun navigateToTeamDetail(team: Team) = startActivity(TeamDetailActivity.createIntent(requireContext(), team))
+    private fun backToMainMenu() {
+        (activity as MainActivity).apply {
+            showFragment(homeFragment)
+            setItemInNavigation(homeFragment)
+        }
+    }
+
+    private fun showProgress() {
+        binding.swipeRefreshLayout.isRefreshing = true
+    }
+
+    private fun dismissProgress() {
+        binding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    private fun navigateToTeamDetail(team: Club) = startActivity(TeamDetailActivity.createIntent(requireContext(), team))
 
     private fun navigateToTicketDetail(ticket: Ticket) = startActivity(TicketDetailActivity.createIntent(requireContext(), ticket))
+
+    override fun onRefresh() {
+        viewModel.getFavourites(getUserID())
+    }
 }
