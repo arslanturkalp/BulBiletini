@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 
 @Suppress("DEPRECATION", "UNCHECKED_CAST")
-fun <T> Intent.getExtrazz(key: String): T {
+fun <T> Intent.getDataExtra(key: String): T {
     val data = this.extras?.get(key)
     return try {
         data as T

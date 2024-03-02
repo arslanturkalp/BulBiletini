@@ -49,7 +49,7 @@
                     android:id="@+id/tvUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lato_regular"
                     android:text="@string/user_name"
                     android:textColor="@color/arrow_color"
                     android:textSize="17sp" />
@@ -94,8 +94,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
-                        android:text="@string/buy_doping"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="@string/buy_tariff"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
 
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/update_account_info"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -149,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/adverts"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/comments"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -205,7 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/dopings"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -232,7 +232,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/be_safe_user"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/blocked_users"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -288,7 +288,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/log_out"
                         android:textColor="@color/arrow_color"
                         android:textSize="17sp" />
@@ -318,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
                         android:text="@string/delete_account"
                         android:textColor="@color/white"
                         android:textSize="17sp" />

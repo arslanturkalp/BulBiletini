@@ -26,19 +26,15 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.apply {
-            btnRegister.setOnClickListener {
-                setupObservers()
-                viewModel.register(
-                    RegisterRequest(
-                        name = edtName.text.toString(),
-                        surname = edtSurname.text.toString(),
-                        username = edtUserName.text.toString(),
-                        password = edtPassword.text.toString(),
-                        email = edtMail.text.toString()
-                    )
-                )
-            }
+        setupToolbar()
+        setupObservers()
+        setupUI()
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.apply {
+            setTitle(getString(R.string.register))
+            setBackButton { onBackPressedDispatcher.onBackPressed() }
         }
     }
 
@@ -61,6 +57,55 @@ class RegisterActivity : BaseActivity() {
                         is Result.Auth -> {}
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupUI() {
+        binding.apply {
+            btnRegister.setOnClickListener {
+                validateRegister(edtName.text.toString(), edtSurname.text.toString(), edtUserName.text.toString().trim(), edtPassword.text.toString().trim(), edtPasswordAgain.text.toString().trim(), edtMail.text.toString().trim())
+                when (viewModel.getErrorList().isEmpty()) {
+                    true ->
+                        viewModel.register(
+                            RegisterRequest(
+                                name = edtName.text.toString(),
+                                surname = edtSurname.text.toString(),
+                                username = edtUserName.text.toString(),
+                                password = edtPassword.text.toString(),
+                                email = edtMail.text.toString()
+                            )
+                        )
+                    false -> showAlertDialogTheme(getString(R.string.error), viewModel.getErrorList().joinToString(separator = "\n") { warning -> getString(warning) })
+                }
+            }
+        }
+    }
+
+    private fun validateRegister(name: String, surname: String, userName: String, password: String, passwordAgain: String, mail: String) {
+        viewModel.clearErrorList()
+
+        binding.apply {
+            if (name.isEmpty()) {
+                viewModel.addError(R.string.name_empty_error)
+            }
+            if (surname.isEmpty()) {
+                viewModel.addError(R.string.surname_empty_error)
+            }
+            if (userName.isEmpty()) {
+                viewModel.addError(R.string.user_name_empty_error)
+            }
+            if (password.isEmpty()) {
+                viewModel.addError(R.string.password_empty_error)
+                if (passwordAgain.isEmpty()) {
+                    viewModel.addError(R.string.password_again_empty_error)
+                }
+            }
+            if (password != passwordAgain) {
+                viewModel.addError(R.string.passwords_not_match)
+            }
+            if (mail.isEmpty()) {
+                viewModel.addError(R.string.mail_empty_error)
             }
         }
     }

@@ -9,7 +9,7 @@ import com.alparslanturk.kombineapp.databinding.ActivityTeamsBinding
 import com.alparslanturk.kombineapp.ui.adapters.TeamsAdapter
 import com.alparslanturk.kombineapp.ui.base.BaseActivity
 import com.alparslanturk.kombineapp.ui.teamdetail.TeamDetailActivity
-import com.alparslanturk.kombineapp.utils.getExtrazz
+import com.alparslanturk.kombineapp.utils.getDataExtra
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +25,7 @@ class TeamsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        clubList = intent.getExtrazz("EXTRAS_TEAM_LIST")
+        clubList = intent.getDataExtra("EXTRAS_TEAM_LIST")
 
         setupToolbar()
         setupRecyclerView()
@@ -46,7 +46,7 @@ class TeamsActivity : BaseActivity() {
     }
 
     private fun setupTeamsList() {
-        teamsAdapter.updateAdapter(clubList.filter { it.totalTicketCount > 0 })
+        teamsAdapter.updateAdapter(clubList.sortedByDescending { it.totalTicketCount })
     }
 
     private fun navigateToTeamDetail(team: Club) = startActivity(TeamDetailActivity.createIntent(this, team))

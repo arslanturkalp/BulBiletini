@@ -18,8 +18,6 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:paddingTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +32,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -66,13 +66,18 @@
                 android:layout_marginTop="16dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
                 tools:listitem="@layout/row_layout_home_team" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/tickets"
                 android:textColor="@color/arrow_color"
@@ -82,7 +87,9 @@
                 android:id="@+id/rvTickets"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:nestedScrollingEnabled="true"
                 android:orientation="vertical"
                 tools:listitem="@layout/row_layout_ticket" />

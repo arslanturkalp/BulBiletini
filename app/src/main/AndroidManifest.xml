@@ -15,16 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KombineApp"
+        android:screenOrientation="portrait"
         android:usesCleartextTraffic="true"
+        tools:ignore="DiscouragedApi,LockedOrientationActivity"
         tools:targetApi="31">
 
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
 
             <intent-filter>
@@ -35,17 +39,53 @@
 
         </activity>
 
-        <activity android:name=".ui.register.RegisterActivity" />
-        <activity android:name=".ui.verificationcode.VerificationCodeActivity" />
-        <activity android:name=".ui.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name=".ui.userdelete.UserDeleteActivity" />
-        <activity android:name=".ui.teams.TeamsActivity" />
-        <activity android:name=".ui.teamdetail.TeamDetailActivity" />
-        <activity android:name=".ui.matchdetail.MatchDetailActivity" />
-        <activity android:name=".ui.ticketdetail.TicketDetailActivity" />
-        <activity android:name=".ui.settings.tickets.TicketsActivity" />
-        <activity android:name=".ui.home.createticket.CreateTicketActivity" />
-        <activity android:name=".ui.settings.tariffs.TariffsActivity" />
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.verificationcode.VerificationCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.forgotpassword.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.userdelete.UserDeleteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.teams.TeamsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.teamdetail.TeamDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.matchdetail.MatchDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ticketdetail.TicketDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.settings.tickets.TicketsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.createticket.CreateTicketActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.settings.tariffs.TariffsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.messages.chat.ChatActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.settings.mytariffs.MyTariffsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.userdetail.UserDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.userdetail.usercomments.UserCommentsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

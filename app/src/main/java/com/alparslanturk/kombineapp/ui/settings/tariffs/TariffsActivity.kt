@@ -28,12 +28,18 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private val tariffCategoriesAdapter by lazy { TariffCategoriesAdapter { purchaseTariff(it) } }
 
+    private var isAnyUpdate: Boolean = false
+
+    private fun onBackClicked() = when (isAnyUpdate) {
+        true -> returnResult()
+        false -> finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         setupToolbar()
-        setupSwipeRefresh()
         setupRecyclerView()
         setupObservers()
 
@@ -43,11 +49,9 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.tariffs))
-            setBackButton { onBackPressedDispatcher.onBackPressed() }
+            setBackButton { onBackClicked() }
         }
     }
-
-    private fun setupSwipeRefresh() = binding.swipeRefreshLayout.setOnRefreshListener(this)
 
     private fun setupRecyclerView() {
         with(binding) {
@@ -65,13 +69,15 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                     getTariffListFlow.collect {
                         when (it) {
                             is Result.Error -> {
-                                dismissProgress()
+                                dismissProgressDialog()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
-                            is Result.Loading -> {}
+                            is Result.Loading -> {
+                                showProgressDialog()
+                            }
 
                             is Result.Success -> {
-                                dismissProgress()
+                                dismissProgressDialog()
                                 if (it.body!!.code == 300) {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
@@ -89,19 +95,19 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                     purchaseTariffFlow.collect {
                         when (it) {
                             is Result.Error -> {
-                                dismissProgress()
+                                dismissProgressDialog()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
                             is Result.Loading -> {}
 
                             is Result.Success -> {
-                                dismissProgress()
+                                dismissProgressDialog()
                                 if (it.body!!.code == 300) {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
                                     it.body.apply {
+                                        isAnyUpdate = true
                                         showAlertDialogTheme(title = getString(R.string.done), contentMessage = it.body.message)
-
                                     }
                                 }
                             }
@@ -115,12 +121,9 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun purchaseTariff(tariff: Tariff) = viewModel.purchaseTariff(PurchaseTariffRequest(getUserID(), tariff.id))
 
-    private fun showProgress() {
-        binding.swipeRefreshLayout.isRefreshing = true
-    }
-
-    private fun dismissProgress() {
-        binding.swipeRefreshLayout.isRefreshing = false
+    private fun returnResult() {
+        setResult(RESULT_OK)
+        finish()
     }
 
     override fun onRefresh() {

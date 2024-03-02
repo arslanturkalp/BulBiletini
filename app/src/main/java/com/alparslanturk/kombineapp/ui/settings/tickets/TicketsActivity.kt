@@ -15,6 +15,7 @@ import com.alparslanturk.kombineapp.databinding.ActivityTicketsBinding
 import com.alparslanturk.kombineapp.ui.adapters.TicketsAdapter
 import com.alparslanturk.kombineapp.ui.base.BaseActivity
 import com.alparslanturk.kombineapp.ui.ticketdetail.TicketDetailActivity
+import com.alparslanturk.kombineapp.utils.getDataExtra
 import com.alparslanturk.kombineapp.utils.setGone
 import com.alparslanturk.kombineapp.utils.setVisible
 import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
@@ -30,6 +31,8 @@ class TicketsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private val ticketsAdapter by lazy { TicketsAdapter { navigateToTicketDetail(it) } }
 
+    lateinit var userId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -39,12 +42,15 @@ class TicketsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         setupRecyclerView()
         setupObservers()
 
-        viewModel.getTickets(getUserID())
+        userId = intent.getDataExtra(EXTRAS_USER_ID)
+
+        viewModel.getTickets(userId)
     }
 
     private fun setupToolbar() {
+        val isDifferentUser = intent.extras?.getBoolean(EXTRAS_DIFFERENT_USER, false)
         binding.toolbar.apply {
-            setTitle(getString(R.string.adverts))
+            setTitle(if (isDifferentUser == true) getString(R.string.adverts) else getString(R.string.my_adverts))
             setBackButton { onBackPressedDispatcher.onBackPressed() }
         }
     }
@@ -70,14 +76,16 @@ class TicketsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                                 dismissProgress()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
-                            is Result.Loading -> {}
+                            is Result.Loading -> {
+                                showProgress()
+                            }
 
                             is Result.Success -> {
                                 dismissProgress()
                                 if (it.body!!.code == 300) {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
-                                    it.body.data.apply {
+                                    it.body.data?.apply {
                                         ticketsAdapter.updateAdapter(ticketList)
                                         if (ticketList.isEmpty()) binding.tvNotFavouriteTicket.setVisible() else binding.tvNotFavouriteTicket.setGone()
                                     }
@@ -107,8 +115,14 @@ class TicketsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
 
-        fun createIntent(context: Context): Intent {
-            return Intent(context, TicketsActivity::class.java)
+        private const val EXTRAS_USER_ID = "EXTRAS_USER_ID"
+        private const val EXTRAS_DIFFERENT_USER = "EXTRAS_DIFFERENT_USER"
+
+        fun createIntent(context: Context, userId: String, isDifferentUser: Boolean = false): Intent {
+            return Intent(context, TicketsActivity::class.java).apply {
+                putExtra(EXTRAS_USER_ID, userId)
+                putExtra(EXTRAS_DIFFERENT_USER, isDifferentUser)
+            }
         }
     }
 }

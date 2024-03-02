@@ -15,4 +15,6 @@
     <color name="red">#D83F31</color>
     <color name="red_light">#E3786E</color>
     <color name="light_green">#EBF3EB</color>
+
+    <color name="golden">#FFD700</color>
 </resources>

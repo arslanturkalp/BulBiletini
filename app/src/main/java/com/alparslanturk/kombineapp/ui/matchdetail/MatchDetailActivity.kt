@@ -14,7 +14,7 @@ import com.alparslanturk.kombineapp.databinding.ActivityMatchDetailBinding
 import com.alparslanturk.kombineapp.ui.adapters.TicketsAdapter
 import com.alparslanturk.kombineapp.ui.base.BaseActivity
 import com.alparslanturk.kombineapp.ui.ticketdetail.TicketDetailActivity
-import com.alparslanturk.kombineapp.utils.getExtrazz
+import com.alparslanturk.kombineapp.utils.getDataExtra
 import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,7 +34,7 @@ class MatchDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        match = intent.getExtrazz("EXTRAS_MATCH")
+        match = intent.getDataExtra("EXTRAS_MATCH")
 
         setupToolbar()
         setupRecyclerView()
@@ -76,7 +76,7 @@ class MatchDetailActivity : BaseActivity() {
                                 if (it.body!!.code == 300) {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
-                                    it.body.data.apply {
+                                    it.body.data?.apply {
                                         ticketsAdapter.updateAdapter(ticketList)
                                     }
                                 }

@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class TicketUser (
+    val id: String,
     val name: String,
     val surname: String,
     val username: String,
@@ -12,7 +13,7 @@ class TicketUser (
     val dateOfBirth: String,
     val phoneNumber: String?,
     val canCall: Boolean,
-    val rating: Long,
+    val rating: Double?,
     val isApproved: Boolean,
     val isShownPhoneNumber: Boolean
 ) : Parcelable

@@ -39,7 +39,7 @@ class TariffCategoriesAdapter(private val onItemClick: (Tariff) -> Unit) : Recyc
                 }
             }
 
-            tariffsAdapter.updateAdapter(item.tariffList)
+            tariffsAdapter.updateAdapter(item.tariffList.sortedBy { it.price.toDouble() })
         }
     }
 }

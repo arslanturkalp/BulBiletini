@@ -9,11 +9,13 @@ import com.alparslanturk.kombineapp.R
 import com.alparslanturk.kombineapp.application.SessionManager.clearPassword
 import com.alparslanturk.kombineapp.application.SessionManager.clearUserID
 import com.alparslanturk.kombineapp.application.SessionManager.clearUserName
+import com.alparslanturk.kombineapp.application.SessionManager.getUserID
 import com.alparslanturk.kombineapp.application.SessionManager.getUserName
 import com.alparslanturk.kombineapp.databinding.FragmentSettingsBinding
 import com.alparslanturk.kombineapp.ui.base.BaseFragment
 import com.alparslanturk.kombineapp.ui.login.LoginActivity
 import com.alparslanturk.kombineapp.ui.main.MainActivity
+import com.alparslanturk.kombineapp.ui.settings.mytariffs.MyTariffsActivity
 import com.alparslanturk.kombineapp.ui.settings.tariffs.TariffsActivity
 import com.alparslanturk.kombineapp.ui.settings.tickets.TicketsActivity
 import com.alparslanturk.kombineapp.ui.userdelete.UserDeleteActivity
@@ -51,8 +53,9 @@ class SettingsFragment : BaseFragment() {
         binding.apply {
             tvUserName.text = getUserName()
             llBuyTariff.setOnClickListener { startActivity(TariffsActivity.createIntent(requireContext())) }
-            llMyTickets.setOnClickListener { startActivity(TicketsActivity.createIntent(requireContext())) }
+            llMyTickets.setOnClickListener { startActivity(TicketsActivity.createIntent(requireContext(), getUserID())) }
             llDeleteAccount.setOnClickListener { startActivity(UserDeleteActivity.createIntent(requireContext())) }
+            llMyTariffs.setOnClickListener { startActivity(MyTariffsActivity.createIntent(requireContext())) }
             llSignOut.setOnClickListener {
                 clearUserName()
                 clearPassword()

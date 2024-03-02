@@ -11,169 +11,176 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="32dp">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            android:orientation="vertical"
+            android:padding="32dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtSelectMatch"
-                style="@style/FormEditText.Spinner.DropDown"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/select_match"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtSelectMatch"
+                    style="@style/FormEditText.Spinner.DropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/select_match"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtSelectTariff"
-                style="@style/FormEditText.Spinner.DropDown"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/select_tariff"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtSelectTariff"
+                    style="@style/FormEditText.Spinner.DropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/select_tariff"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtTribune"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/tribune"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtTribune"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/tribune"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtBlock"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/block"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/block"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtOrder"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/order"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/order"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtPrice"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/price"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/price"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeWidth="0dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtDescription"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/description"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeWidth="0dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/description"
+                    android:imeOptions="actionNext"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:minLines="3"
+                    android:padding="8dp"
+                    android:textCursorDrawable="@drawable/color_cursor" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCreateTicket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:height="60dp"
-            android:background="@drawable/bg_rounded"
-            android:backgroundTint="@color/text_selector_default_green"
-            android:fontFamily="@font/lato_bold"
-            android:text="@string/create_ticket"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCreateTicket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:height="60dp"
+                android:background="@drawable/bg_rounded"
+                android:backgroundTint="@color/text_selector_default_green"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/create_ticket"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

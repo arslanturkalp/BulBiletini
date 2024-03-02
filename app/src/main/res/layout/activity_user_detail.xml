@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="?attr/actionBarItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="16dp"
+                android:src="@color/black"
+                app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/user_name"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:theme="@style/RatingBar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                android:paddingBottom="120dp">
+
+                <LinearLayout
+                    android:id="@+id/llCall"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center_vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_call"
+                        android:tint="@color/primary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/call_user"
+                        android:textColor="@color/arrow_color"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_messages"
+                        android:tint="@color/primary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/send_message"
+                        android:textColor="@color/arrow_color"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llWhatsapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_whatsapp"
+                        android:tint="@color/primary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/send_message_with_whatsapp"
+                        android:textColor="@color/arrow_color"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAdverts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_list"
+                        android:tint="@color/primary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/shared_adverts"
+                        android:textColor="@color/arrow_color"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llComments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_comment"
+                        android:tint="@color/primary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/user_comments"
+                        android:textColor="@color/arrow_color"
+                        android:textSize="16sp" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="16dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center"
+                            android:src="@color/green"
+                            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTotalTicket"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_regular"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            tools:text="300" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAddComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_add_comment"
+                        android:tint="@color/primary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/add_comment"
+                        android:textColor="@color/arrow_color"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llBlockUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:backgroundTint="@color/red"
+                    android:foreground="@drawable/bg_ripple_effect"
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_block" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:padding="16dp"
+                        android:text="@string/block_user"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

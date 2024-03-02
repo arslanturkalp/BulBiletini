@@ -26,11 +26,13 @@ import com.alparslanturk.kombineapp.ui.adapters.HomeTeamsAdapter
 import com.alparslanturk.kombineapp.ui.adapters.TicketsAdapter
 import com.alparslanturk.kombineapp.ui.base.BaseFragment
 import com.alparslanturk.kombineapp.ui.home.createticket.CreateTicketActivity
+import com.alparslanturk.kombineapp.ui.main.MainActivity
 import com.alparslanturk.kombineapp.ui.teamdetail.TeamDetailActivity
 import com.alparslanturk.kombineapp.ui.teams.TeamsActivity
 import com.alparslanturk.kombineapp.ui.ticketdetail.TicketDetailActivity
 import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -78,7 +80,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 override fun handleOnBackPressed() {
                     showAlertDialogTheme(
                         getString(R.string.error),
-                        "Uygulamadan çıkmak istiyor musunuz?",
+                        getString(R.string.app_exit),
                         showNegativeButton = true,
                         onPositiveButtonClick = { activity?.finishAffinity() })
                 }
@@ -122,15 +124,16 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private fun setupObservers() {
         lifecycleScope.launch {
             viewModel.apply {
-                launch {
+                launch(Dispatchers.Main) {
                     clubsGetListWithTicketsFlow.collect {
                         when (it) {
                             is Result.Error -> {
                                 dismissProgress()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
-                            is Result.Loading -> {}
-
+                            is Result.Loading -> {
+                                showProgress()
+                            }
                             is Result.Success -> {
                                 dismissProgress()
                                 if (it.body!!.code == 300) {
@@ -138,8 +141,32 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                                 } else {
                                     it.body.data.apply {
                                         this@HomeFragment.clubList = ArrayList(clubList)
-                                        teamsAdapter.updateAdapter(clubList)
+                                        teamsAdapter.updateAdapter(clubList.sortedByDescending { club -> club.totalTicketCount })
                                         ticketsAdapter.updateAdapter(ticketList)
+
+                                        viewModel.getUserMessages(getUserID())
+                                    }
+                                }
+                            }
+                            is Result.Auth -> {}
+                        }
+                    }
+                }
+
+                launch(Dispatchers.Main) {
+                    getUserMessagesFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                if (it.code == 300) {
+                                    showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                                } else {
+                                    dismissProgress()
+                                    it.body?.data?.apply {
+                                        wasNotSeenTotalMessageCount.apply { if (this != 0) (activity as MainActivity).setNotificationBadge(this) }
                                     }
                                 }
                             }
@@ -159,9 +186,9 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
-    private fun navigateToCreateTicket() = resultCreateTicket.launch(CreateTicketActivity.createIntent(requireContext()))
+    private fun navigateToCreateTicket() = resultRefreshList.launch(CreateTicketActivity.createIntent(requireContext()))
 
-    private val resultCreateTicket = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val resultRefreshList = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             viewModel.getClubsAndTickets(ClubGetListWithTicketsRequest(getUserID(), 1))
         }
@@ -171,7 +198,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun navigateToTeamDetail(team: Club) = startActivity(TeamDetailActivity.createIntent(requireContext(), team))
 
-    private fun navigateToTicketDetail(ticket: Ticket) = startActivity(TicketDetailActivity.createIntent(requireContext(), ticket))
+    private fun navigateToTicketDetail(ticket: Ticket) = resultRefreshList.launch(TicketDetailActivity.createIntent(requireContext(), ticket))
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: MessageEvent) {

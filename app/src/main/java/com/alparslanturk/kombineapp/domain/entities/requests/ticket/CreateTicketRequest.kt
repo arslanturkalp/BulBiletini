@@ -1,4 +1,4 @@
-package com.alparslanturk.kombineapp.domain.entities.responses.ticket
+package com.alparslanturk.kombineapp.domain.entities.requests.ticket
 
 data class CreateTicketRequest(
     val matchId: String,
@@ -7,6 +7,6 @@ data class CreateTicketRequest(
     val block: String,
     val order: String,
     val userId: String,
-    val tariffId: String,
+    val tariffCategoryId: String,
     val description: String
 )

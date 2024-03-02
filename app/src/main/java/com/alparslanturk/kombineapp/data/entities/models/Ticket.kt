@@ -28,6 +28,9 @@ data class Ticket(
     val ticketId: String,
     val price: Int,
     val location: String,
+    val tribune: String,
+    val block: String,
+    val order: String,
     val ticketDescription: String,
-    val ticketIsFavourite: Boolean
+    var ticketIsFavourite: Boolean
 ) : Parcelable

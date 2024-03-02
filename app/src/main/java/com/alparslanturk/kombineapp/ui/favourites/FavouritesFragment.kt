@@ -1,10 +1,12 @@
 package com.alparslanturk.kombineapp.ui.favourites
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -93,7 +95,9 @@ class FavouritesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
                                 dismissProgress()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
-                            is Result.Loading -> {}
+                            is Result.Loading -> {
+                                showProgress()
+                            }
 
                             is Result.Success -> {
                                 dismissProgress()
@@ -131,9 +135,15 @@ class FavouritesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
-    private fun navigateToTeamDetail(team: Club) = startActivity(TeamDetailActivity.createIntent(requireContext(), team))
+    private fun navigateToTeamDetail(team: Club) = resultRefreshList.launch(TeamDetailActivity.createIntent(requireContext(), team))
 
-    private fun navigateToTicketDetail(ticket: Ticket) = startActivity(TicketDetailActivity.createIntent(requireContext(), ticket))
+    private fun navigateToTicketDetail(ticket: Ticket) = resultRefreshList.launch(TicketDetailActivity.createIntent(requireContext(), ticket))
+
+    private val resultRefreshList = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            viewModel.getFavourites(getUserID())
+        }
+    }
 
     override fun onRefresh() {
         viewModel.getFavourites(getUserID())

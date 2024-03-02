@@ -7,19 +7,25 @@ import com.alparslanturk.kombineapp.domain.entities.requests.favourite.AddFavour
 import com.alparslanturk.kombineapp.domain.entities.requests.favourite.AddFavouriteTicketRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.favourite.RemoveFavouriteClubRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.favourite.RemoveFavouriteTicketRequest
+import com.alparslanturk.kombineapp.domain.entities.requests.profilecomment.AddCommentRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.tariff.PurchaseTariffRequest
+import com.alparslanturk.kombineapp.domain.entities.requests.ticket.CreateTicketRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.user.ForgotPasswordRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.user.LoginRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.user.RegisterRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.user.UserDeleteRequest
+import com.alparslanturk.kombineapp.domain.entities.requests.usermessage.SendMessageRequest
 import com.alparslanturk.kombineapp.domain.entities.responses.club.clubgetlistwithtickets.ClubGetListWithTicketsResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.favourite.AddFavouriteClubResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.favourite.AddFavouriteTicketResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.favourite.RemoveFavouriteClubResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.favourite.RemoveFavouriteTicketResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.match.GetMatchListResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.profilecomment.AddCommentResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.profilecomment.GetCommentsResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.tariff.GetMyTariffsResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.tariff.GetTariffListResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.tariff.PurchaseTariffResponse
-import com.alparslanturk.kombineapp.domain.entities.responses.ticket.CreateTicketRequest
 import com.alparslanturk.kombineapp.domain.entities.responses.ticket.CreateTicketResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.ticket.GetTicketsResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.user.deleteuser.UserDeleteResponse
@@ -27,6 +33,9 @@ import com.alparslanturk.kombineapp.domain.entities.responses.user.forgotpasswor
 import com.alparslanturk.kombineapp.domain.entities.responses.user.login.LoginResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.user.register.RegisterResponse
 import com.alparslanturk.kombineapp.domain.entities.responses.user.verificationcode.VerificationCodeResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.usermessage.GetUserMessagesResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.usermessage.RetrieveMessagesResponse
+import com.alparslanturk.kombineapp.domain.entities.responses.usermessage.SendMessageResponse
 import com.alparslanturk.kombineapp.domain.repository.Repository
 import javax.inject.Inject
 
@@ -175,13 +184,17 @@ class RepositoryImpl @Inject constructor(private val apiService: ApiService, pri
     }
 
     override suspend fun createTicket(createTicketRequest: CreateTicketRequest): Result<CreateTicketResponse> {
-        val response = apiService.createTicket(createTicketRequest)
-        return try {
-            return if (response.isSuccessful) {
-                Result.Success(response.body(), response.code(), response.message())
-            } else Result.Error(response.code(), response.message())
-        } catch (e: Exception) {
-            Result.Error(response.code(), e.message)
+        if (createTicketRequest.price == 0) {
+            return Result.Error(300, "Fiyat boş geçilemez")
+        } else {
+            val response = apiService.createTicket(createTicketRequest)
+            return try {
+                return if (response.isSuccessful) {
+                    Result.Success(response.body(), response.code(), response.message())
+                } else Result.Error(response.code(), response.message())
+            } catch (e: Exception) {
+                Result.Error(response.code(), e.message)
+            }
         }
     }
 
@@ -198,6 +211,83 @@ class RepositoryImpl @Inject constructor(private val apiService: ApiService, pri
 
     override suspend fun purchaseTariff(purchaseTariffRequest: PurchaseTariffRequest): Result<PurchaseTariffResponse> {
         val response = apiService.purchaseTariff(purchaseTariffRequest)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun getMatchList(): Result<GetMatchListResponse> {
+        val response = apiService.getMatchList()
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun getUserMessages(userID: String): Result<GetUserMessagesResponse> {
+        val response = apiService.getUserMessages(userID)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun retrieveMessages(userOne: String, userTwo: String): Result<RetrieveMessagesResponse> {
+        val response = apiService.retrieveMessages(userOne, userTwo)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun sendMessage(sendMessageRequest: SendMessageRequest): Result<SendMessageResponse> {
+        val response = apiService.sendMessage(sendMessageRequest)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun getMyTariffs(userID: String): Result<GetMyTariffsResponse> {
+        val response = apiService.getMyTariffs(userID)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun getComments(userID: String): Result<GetCommentsResponse> {
+        val response = apiService.getComments(userID)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun addComment(addCommentRequest: AddCommentRequest): Result<AddCommentResponse> {
+        val response = apiService.addComment(addCommentRequest)
         return try {
             return if (response.isSuccessful) {
                 Result.Success(response.body(), response.code(), response.message())

@@ -37,22 +37,47 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvMatchName"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
         android:layout_weight="1"
-        android:fontFamily="@font/lato_bold"
-        android:textColor="@color/arrow_color"
-        tools:text="Galatasaray - Fenerbahçe" />
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMatchName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/arrow_color"
+            android:textSize="15sp"
+            tools:text="Galatasaray - Fenerbahçe" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMatchDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:text="3 Mart 2024"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
 
     <FrameLayout
+        android:id="@+id/flCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"
+        tools:visibility="gone">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="36dp"
@@ -73,4 +98,12 @@
 
     </FrameLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="15sp"
+        android:visibility="gone"
+        tools:text="15:00" />
 </LinearLayout>

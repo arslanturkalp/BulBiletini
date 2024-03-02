@@ -4,5 +4,5 @@ data class GetTicketsResponse(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val data: GetTicketsResponseItem
+    val data: GetTicketsResponseItem?
 )

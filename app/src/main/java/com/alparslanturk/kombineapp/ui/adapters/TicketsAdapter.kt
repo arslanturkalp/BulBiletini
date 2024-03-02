@@ -41,7 +41,7 @@ class TicketsAdapter(private val onItemClick: (Ticket) -> Unit) : RecyclerView.A
                 tvPrice.apply {
                     text = String.format(context.getString(R.string.tl_format), item.price.toString())
                 }
-                tvComment.text = item.location
+                tvComment.text = "${item.tribune} - ${item.block} - ${item.order}"
 
                 itemView.setOnClickListener { onItemClick.invoke(item) }
             }

@@ -7,9 +7,10 @@
     <string name="cancel">İptal</string>
     <string name="done">Tamam</string>
     <string name="error">Hata</string>
-    <string name="buy_doping">Doping Satın Al</string>
+    <string name="buy_tariff">Tarife Satın Al</string>
     <string name="update_account_info">Hesap Bilgilerimi Güncelle</string>
-    <string name="adverts">İlanlarım</string>
+    <string name="my_adverts">İlanlarım</string>
+    <string name="adverts">İlanlar</string>
     <string name="comments">Yorumlarım</string>
     <string name="dopings">Dopinglerim</string>
     <string name="be_safe_user">Güvenli Kullanıcı Ol</string>
@@ -30,7 +31,8 @@
     <string name="name">Ad</string>
     <string name="surname">Soyad</string>
     <string name="email">E-mail</string>
-    <string name="password">Şifre</string>
+    <string name="password">Parola</string>
+    <string name="password_again">Parola Tekrar</string>
     <string name="date_of_birth">Doğum Tarihi</string>
     <string name="phone">Telefon</string>
     <string name="register">Kayıt Ol</string>
@@ -55,4 +57,23 @@
     <string name="description">Açıklama</string>
     <string name="select">Seç</string>
     <string name="tariffs">Tarifeler</string>
+    <string name="price_empty_warning">Fiyat boş geçilemez</string>
+    <string name="app_exit">Uygulamadan çıkmak istiyor musunuz?</string>
+    <string name="name_empty_error">İsim alanı boş geçilemez.</string>
+    <string name="surname_empty_error">Soyisim alanı boş geçilemez.</string>
+    <string name="user_name_empty_error">Kullanıcı adı alanı boş geçilemez.</string>
+    <string name="password_empty_error">Şifre alanı boş geçilemez.</string>
+    <string name="mail_empty_error">Mail alanı boş geçilemez.</string>
+    <string name="password_again_empty_error">Şifrenizi tekrar girmelisiniz.</string>
+    <string name="passwords_not_match">Şifreler birbirleriyle eşleşmiyor.</string>
+    <string name="count_format">%1$s adet</string>
+    <string name="my_tariffs">Tarifelerim</string>
+    <string name="call_user">Kullanıcıyı Ara</string>
+    <string name="send_message">Kullanıcıya Mesaj Gönder</string>
+    <string name="shared_adverts">Paylaştığı İlanlar</string>
+    <string name="send_message_with_whatsapp">Whatsapp\'tan Mesaj Gönder</string>
+    <string name="user_comments">Kullanıcı Yorumları</string>
+    <string name="add_comment">Yorum Ekle</string>
+    <string name="block_user">Kullanıcıyı Engelle</string>
+    <string name="message">Mesaj</string>
 </resources>

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alparslanturk.kombineapp.application.Constants.BASE_URL
 import com.alparslanturk.kombineapp.data.entities.models.Club
 import com.alparslanturk.kombineapp.databinding.RowLayoutHomeTeamBinding
+import com.alparslanturk.kombineapp.utils.setGone
+import com.alparslanturk.kombineapp.utils.setVisible
 import com.bumptech.glide.Glide
 
 class HomeTeamsAdapter(private val onItemClick: (Club) -> Unit) : RecyclerView.Adapter<HomeTeamsAdapter.ClubsViewHolder>() {
@@ -38,6 +40,13 @@ class HomeTeamsAdapter(private val onItemClick: (Club) -> Unit) : RecyclerView.A
                 ivBg.apply {
                     gradientDrawable.cornerRadius = 0f
                     background = gradientDrawable
+                }
+                tvCount.apply {
+                    if (item.totalTicketCount == 0) setGone() else setVisible()
+                    text = item.totalTicketCount.toString()
+                }
+                flCount.apply {
+                    if (item.totalTicketCount == 0) setGone() else setVisible()
                 }
             }
             itemView.setOnClickListener { onItemClick.invoke(item) }

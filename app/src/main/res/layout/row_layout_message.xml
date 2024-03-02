@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llCard"
+        style="@style/ClickableView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:src="@color/black"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/lato_regular"
+                android:textColor="@color/arrow_color"
+                android:textSize="15sp"
+                tools:text="User" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLastMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/lato_light"
+                android:textColor="@color/grey"
+                android:textSize="13sp"
+                tools:text="Biletler hazır." />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/flCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@color/red"
+                app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTotalTicket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/lato_regular"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="5" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D9D9D9" />
+
+</LinearLayout>

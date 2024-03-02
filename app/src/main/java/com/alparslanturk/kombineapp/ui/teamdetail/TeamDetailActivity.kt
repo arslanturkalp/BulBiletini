@@ -21,15 +21,15 @@ import com.alparslanturk.kombineapp.ui.adapters.TicketsAdapter
 import com.alparslanturk.kombineapp.ui.base.BaseActivity
 import com.alparslanturk.kombineapp.ui.matchdetail.MatchDetailActivity
 import com.alparslanturk.kombineapp.ui.ticketdetail.TicketDetailActivity
-import com.alparslanturk.kombineapp.utils.getExtrazz
+import com.alparslanturk.kombineapp.utils.addOnBackPressedListener
+import com.alparslanturk.kombineapp.utils.getDataExtra
 import com.alparslanturk.kombineapp.utils.setGone
 import com.alparslanturk.kombineapp.utils.setVisible
 import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 @AndroidEntryPoint
 class TeamDetailActivity : BaseActivity() {
@@ -46,11 +46,18 @@ class TeamDetailActivity : BaseActivity() {
 
     private lateinit var team: Club
 
+    private fun onBackClicked() = when (isAnyUpdate) {
+        true -> returnResult()
+        false -> finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        team = intent.getExtrazz("EXTRAS_TEAM")
+        addOnBackPressedListener { onBackClicked() }
+
+        team = intent.getDataExtra("EXTRAS_TEAM")
 
         setupToolbar()
         setupObservers()
@@ -78,7 +85,7 @@ class TeamDetailActivity : BaseActivity() {
     private fun setupObservers() {
         lifecycleScope.launch {
             viewModel.apply {
-                launch {
+                launch(Dispatchers.Main) {
                     addFavouriteClubFlow.collect {
                         when (it) {
                             is Result.Error -> {
@@ -100,7 +107,7 @@ class TeamDetailActivity : BaseActivity() {
                     }
                 }
 
-                launch {
+                launch(Dispatchers.Main) {
                     removeFavouriteClubFlow.collect {
                         when (it) {
                             is Result.Error -> {
@@ -152,6 +159,11 @@ class TeamDetailActivity : BaseActivity() {
     private fun navigateToMatchDetail(match: Match) = startActivity(MatchDetailActivity.createIntent(this, match))
 
     private fun navigateToTicketDetail(ticket: Ticket) = startActivity(TicketDetailActivity.createIntent(this, ticket))
+
+    private fun returnResult() {
+        setResult(RESULT_OK)
+        finish()
+    }
 
     companion object {
 

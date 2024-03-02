@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:gravity="center_vertical">
+        android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_stadium"
             android:tint="@color/primary" />
 
     </LinearLayout>
@@ -30,7 +30,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
             android:orientation="vertical"
             android:padding="24dp">
 
@@ -45,10 +44,10 @@
                     android:id="@+id/edtUserName"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:hint="@string/user_name"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="@string/user_name"
                     android:padding="8dp"
                     android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -68,9 +67,9 @@
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:hint="@string/password"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:hint="@string/password"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textCursorDrawable="@drawable/color_cursor" />

@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lato_regular"
                     android:textColor="@color/black"
                     tools:text="Galatasaray" />
 
@@ -59,7 +59,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="0.36"
                 android:gravity="center_horizontal"
@@ -76,20 +76,21 @@
                     android:id="@+id/tvDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/lato_regular"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     tools:text="20.09.2023\nÇarşamba\n19:45" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvStadium"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="2dp"
-                    android:fontFamily="@font/lato_bold"
-                    android:maxLines="3"
                     android:ellipsize="end"
+                    android:fontFamily="@font/lato_regular"
+                    android:maxLines="3"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     tools:text="Rams Park" />
@@ -114,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lato_regular"
                     android:textColor="@color/black"
                     tools:text="Kopenhag" />
 
@@ -152,11 +153,11 @@
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivFavourite"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/ivAddFavourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_heart" />
+                    android:src="@drawable/ic_not_favourite_black" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivShare"
@@ -181,10 +182,13 @@
                 android:paddingBottom="120dp">
 
                 <LinearLayout
+                    android:id="@+id/llTicketUser"
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
+                    android:baselineAligned="false"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -208,7 +212,8 @@
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp" />
+                            android:layout_marginTop="4dp"
+                            android:theme="@style/RatingBar" />
 
                     </LinearLayout>
 

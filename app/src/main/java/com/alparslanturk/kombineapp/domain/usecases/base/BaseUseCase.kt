@@ -1,4 +1,4 @@
-package com.alparslanturk.kombineapp.domain.usecases
+package com.alparslanturk.kombineapp.domain.usecases.base
 
 import com.alparslanturk.kombineapp.data.entities.models.Result
 import kotlinx.coroutines.flow.Flow

@@ -1,5 +1,6 @@
 package com.alparslanturk.kombineapp.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -120,6 +121,23 @@ class MainActivity : AppCompatActivity() {
     private fun getFragmentTag(fragment: Fragment): String = fragment.javaClass.simpleName
 
     private fun clickFavourites() = binding.bottomNavigationView.setSelectedTab(R.id.navigation_favourites)
+
+    @SuppressLint("NewApi")
+    fun setNotificationBadge(count: Int) {
+        binding.bottomNavigationView.apply {
+            if (count > 0) {
+                getOrCreateBadge(menu.getItem(2).itemId).apply {
+                    number = count
+                    verticalOffset = 20
+                    backgroundColor = getColor(R.color.green)
+                    badgeTextColor = getColor(R.color.white)
+                }
+            } else {
+                removeBadge(2)
+            }
+
+        }
+    }
 
     companion object {
 

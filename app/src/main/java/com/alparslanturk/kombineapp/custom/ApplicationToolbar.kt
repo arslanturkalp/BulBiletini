@@ -3,7 +3,6 @@ package com.alparslanturk.kombineapp.custom
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.LinearLayout
 import com.alparslanturk.kombineapp.R
 import com.alparslanturk.kombineapp.databinding.LayoutAppToolbarBinding
@@ -27,6 +26,14 @@ class ApplicationToolbar @JvmOverloads constructor(context: Context, attrs: Attr
     fun setBackButton(onClick: () -> Unit) {
         binding.ivBack.apply {
             setVisible()
+            setOnClickListener { onClick.invoke() }
+        }
+    }
+
+    fun setDownButton(onClick: () -> Unit) {
+        binding.ivBack.apply {
+            setVisible()
+            setImageResource(R.drawable.ic_down)
             setOnClickListener { onClick.invoke() }
         }
     }

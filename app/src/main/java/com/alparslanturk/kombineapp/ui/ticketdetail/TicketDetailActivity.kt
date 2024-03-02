@@ -18,8 +18,10 @@ import com.alparslanturk.kombineapp.databinding.ActivityTicketDetailBinding
 import com.alparslanturk.kombineapp.domain.entities.requests.favourite.AddFavouriteTicketRequest
 import com.alparslanturk.kombineapp.domain.entities.requests.favourite.RemoveFavouriteTicketRequest
 import com.alparslanturk.kombineapp.ui.base.BaseActivity
+import com.alparslanturk.kombineapp.ui.messages.chat.ChatActivity
+import com.alparslanturk.kombineapp.ui.userdetail.UserDetailActivity
 import com.alparslanturk.kombineapp.utils.addOnBackPressedListener
-import com.alparslanturk.kombineapp.utils.getExtrazz
+import com.alparslanturk.kombineapp.utils.getDataExtra
 import com.alparslanturk.kombineapp.utils.showAlertDialogTheme
 import com.alparslanturk.kombineapp.utils.toDate
 import com.alparslanturk.kombineapp.utils.toString
@@ -49,7 +51,7 @@ class TicketDetailActivity : BaseActivity() {
 
         addOnBackPressedListener { onBackClicked() }
 
-        ticket = intent.getExtrazz("EXTRAS_TICKET")
+        ticket = intent.getDataExtra("EXTRAS_TICKET")
 
         setupToolbar()
         setupTicket()
@@ -60,15 +62,6 @@ class TicketDetailActivity : BaseActivity() {
         binding.toolbar.apply {
             setTitle(getString(R.string.ticket_detail))
             setBackButton { onBackPressedDispatcher.onBackPressed() }
-            ticket.apply {
-                setFavouriteButton(ticketIsFavourite) {
-                    if (ticketIsFavourite) {
-                        viewModel.removeFavouriteTicket(RemoveFavouriteTicketRequest(getUserID(), ticketId))
-                    } else {
-                        viewModel.addFavouriteTicket(AddFavouriteTicketRequest(getUserID(), ticketId))
-                    }
-                }
-            }
         }
     }
 
@@ -89,9 +82,21 @@ class TicketDetailActivity : BaseActivity() {
             tvPrice.text = String.format(getString(R.string.tl_format), ticket.price.toString())
             tvLocation.text = ticket.location
             tvComment.text = ticket.ticketDescription
-            ratingBar.rating = ticket.user.rating.toFloat()
+            ratingBar.rating = (ticket.user.rating ?: 0.0).toFloat()
 
+            ivAddFavourite.apply {
+                if (ticket.ticketIsFavourite) {
+                    setOnClickListener { viewModel.removeFavouriteTicket(RemoveFavouriteTicketRequest(getUserID(), ticket.ticketId)) }
+                    setImageResource(R.drawable.ic_favourite_black)
+                } else {
+                    setOnClickListener { viewModel.addFavouriteTicket(AddFavouriteTicketRequest(getUserID(), ticket.ticketId)) }
+                    setImageResource(R.drawable.ic_not_favourite_black)
+                }
+            }
+
+            flMessage.setOnClickListener { navigateToChat() }
             flCall.setOnClickListener { startActivity(Intent(Intent.ACTION_DIAL).also { it.data = Uri.parse("tel:+90" + ticket.user.phoneNumber) }) }
+            llTicketUser.setOnClickListener { navigateToUserDetail() }
         }
     }
 
@@ -111,6 +116,9 @@ class TicketDetailActivity : BaseActivity() {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
                                     Toast.makeText(this@TicketDetailActivity, "Başarıyla favorilere eklendi", Toast.LENGTH_LONG).show()
+                                    ticket.ticketIsFavourite = true
+                                    isAnyUpdate = true
+                                    setupTicket()
                                 }
                             }
                             is Result.Auth -> {}
@@ -131,6 +139,9 @@ class TicketDetailActivity : BaseActivity() {
                                     showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                 } else {
                                     Toast.makeText(this@TicketDetailActivity, "Başarıyla favorilerden kaldırıldı", Toast.LENGTH_LONG).show()
+                                    ticket.ticketIsFavourite = false
+                                    isAnyUpdate = true
+                                    setupTicket()
                                 }
                             }
                             is Result.Auth -> {}
@@ -140,11 +151,15 @@ class TicketDetailActivity : BaseActivity() {
             }
         }
     }
-    
+
     private fun returnResult() {
         setResult(RESULT_OK)
         finish()
     }
+
+    private fun navigateToChat() = startActivity(ChatActivity.createIntent(this, ticket.user))
+
+    private fun navigateToUserDetail() = startActivity(UserDetailActivity.createIntent(this, ticket.user))
 
     companion object {
 
