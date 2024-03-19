@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color">
 
-    <com.alparslanturk.kombineapp.custom.ApplicationToolbar
+    <com.alparslanturk.biletdevret.custom.ApplicationToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +24,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/upcoming_matches"
+        android:textColor="@color/arrow_color"
         android:textSize="15sp" />
 
     <LinearLayout
@@ -41,7 +42,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/lato_regular"
             android:text="@string/empty_match"
-            android:textColor="@color/primary"
+            android:textColor="@color/green"
             android:textSize="13sp"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -68,6 +69,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/tickets"
+        android:textColor="@color/arrow_color"
         android:textSize="15sp" />
 
     <LinearLayout
@@ -84,7 +86,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/lato_regular"
             android:text="@string/empty_ticket"
-            android:textColor="@color/primary"
+            android:textColor="@color/green"
             android:textSize="13sp"
             android:visibility="gone"
             tools:visibility="visible" />

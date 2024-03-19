@@ -15,4 +15,5 @@
     <color name="light_green">#EBF3EB</color>
 
     <color name="golden">#FFD700</color>
+    <color name="line_color">#1D333D</color>
 </resources>

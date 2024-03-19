@@ -3,6 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven("https://jitpack.io")
+        maven("https://maven.ghostscript.com")
     }
 }
 dependencyResolutionManagement {
@@ -10,8 +12,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://maven.ghostscript.com")
     }
 }
 
-rootProject.name = "KombineApp"
+rootProject.name = "BiletDevret"
 include(":app")

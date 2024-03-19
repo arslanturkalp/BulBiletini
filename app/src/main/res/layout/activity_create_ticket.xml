@@ -6,7 +6,7 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
-    <com.alparslanturk.kombineapp.custom.ApplicationToolbar
+    <com.alparslanturk.biletdevret.custom.ApplicationToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText

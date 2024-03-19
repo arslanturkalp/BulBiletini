@@ -9,6 +9,7 @@
     android:layout_margin="8dp"
     android:background="@drawable/bg_rounded"
     android:elevation="4dp"
+    android:foreground="@drawable/bg_ripple_effect"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="16dp">

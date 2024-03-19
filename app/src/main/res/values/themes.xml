@@ -72,4 +72,18 @@
         <item name="colorControlActivated">@color/golden</item>
     </style>
 
+    <style name="NavigationBarColor" parent="Theme.KombineApp">
+        <item name="android:navigationBarColor">@color/bg_color</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize8Dp" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
 </resources>

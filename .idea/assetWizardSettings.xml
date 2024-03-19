@@ -40,6 +40,7 @@
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="$USER_HOME$/Desktop/icons8-stadium-64 1@3x.png" />
                                                 <entry key="opacityPercent" value="80" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -103,6 +104,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_bilet_devret.xml" />
+                                                <entry key="scalingPercent" value="55" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -130,6 +133,12 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="339a46" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -300,11 +309,6 @@
                             </entry>
                           </map>
                         </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
-                          </map>
-                        </option>
                       </PersistentState>
                     </value>
                   </entry>
@@ -328,7 +332,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/block/baseline_block_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/add_circle/baseline_add_circle_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -338,9 +342,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_block" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/icons8-whatsapp.svg" />
+                            <entry key="outputName" value="ic_back" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/back-arrow.svg" />
                           </map>
                         </option>
                       </PersistentState>

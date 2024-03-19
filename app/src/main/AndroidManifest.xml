@@ -6,16 +6,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".application.KombineApp"
+        android:name=".application.BiletDevret"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.KombineApp"
-        android:screenOrientation="portrait"
         android:usesCleartextTraffic="true"
         tools:ignore="DiscouragedApi,LockedOrientationActivity"
         tools:targetApi="31">
@@ -43,13 +43,13 @@
             android:name=".ui.register.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.verificationcode.VerificationCodeActivity"
+            android:name=".ui.login.verificationcode.VerificationCodeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.forgotpassword.ForgotPasswordActivity"
+            android:name=".ui.login.forgotpassword.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.userdelete.UserDeleteActivity"
+            android:name=".ui.settings.userdelete.UserDeleteActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.teams.TeamsActivity"
@@ -76,6 +76,7 @@
         <activity
             android:name=".ui.messages.chat.ChatActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/NavigationBarColor"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.settings.mytariffs.MyTariffsActivity"
@@ -85,6 +86,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.userdetail.usercomments.UserCommentsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.userdetail.addcomment.AddCommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.userdetail.rateuser.RateUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.settings.updateuser.UpdateUserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.settings.blockedusers.BlockedUsersActivity"
             android:screenOrientation="portrait" />
     </application>
 

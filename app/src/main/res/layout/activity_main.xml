@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_settings"
-        tools:name="com.alparslanturk.kombineapp.ui.home.HomeFragment" />
+        tools:name="com.alparslanturk.biletdevret.ui.home.HomeFragment" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

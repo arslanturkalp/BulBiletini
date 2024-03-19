@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.alparslanturk.kombineapp"
+    namespace = "com.alparslanturk.biletdevret"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.alparslanturk.kombineapp"
+        applicationId = "com.alparslanturk.biletdevret"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -78,4 +78,7 @@ dependencies {
 
     //EventBus
     implementation("org.greenrobot:eventbus:3.3.1")
+
+    //ImagePicker
+    implementation("com.github.dhaval2404:imagepicker:2.1")
 }

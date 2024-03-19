@@ -13,7 +13,8 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        tools:ignore="UselessParent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivBg"
@@ -37,23 +38,23 @@
             android:layout_gravity="end">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@color/red"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@color/green"
                 app:shapeAppearanceOverlay="@style/CircleImageView" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCount"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:fontFamily="@font/lato_regular"
                 android:gravity="center"
                 android:textColor="@color/white"
+                android:textSize="12sp"
                 tools:text="5" />
 
         </FrameLayout>
 
-
     </FrameLayout>
-
 
 </RelativeLayout>

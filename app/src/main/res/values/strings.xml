@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KombineApp</string>
+    <string name="app_name">BiletDevret</string>
     <string name="home">Ana Sayfa</string>
     <string name="favourites">Favoriler</string>
     <string name="messages">Mesajlar</string>
@@ -12,7 +12,7 @@
     <string name="my_adverts">İlanlarım</string>
     <string name="adverts">İlanlar</string>
     <string name="comments">Yorumlarım</string>
-    <string name="dopings">Dopinglerim</string>
+    <string name="dopings">Tarifelerim</string>
     <string name="be_safe_user">Güvenli Kullanıcı Ol</string>
     <string name="blocked_users">Engellenen Kullanıcılar</string>
     <string name="log_out">Çıkış Yap</string>
@@ -32,15 +32,18 @@
     <string name="surname">Soyad</string>
     <string name="email">E-mail</string>
     <string name="password">Parola</string>
+    <string name="new_password">Yeni Parola</string>
     <string name="password_again">Parola Tekrar</string>
     <string name="date_of_birth">Doğum Tarihi</string>
     <string name="phone">Telefon</string>
     <string name="register">Kayıt Ol</string>
     <string name="login">Giriş Yap</string>
     <string name="change_password">Şifreyi Değiştir</string>
+    <string name="change_profile">Profil Fotoğrafını Değiştir</string>
     <string name="verification_code">Doğrulama Kodu</string>
+    <string name="get_verification_code">Doğrulama Kodu Al</string>
     <string name="send_code">Kod Gönder</string>
-    <string name="forgot_password_description">Mailinize gönderilen kodu giriniz ve bilgileri doldurunuz.</string>
+    <string name="forgot_password_description">Mailinize gönderilen kodu giriniz ve yeni parolanızı belirleyiniz.</string>
     <string name="forgot_password">Şifremi Unuttum</string>
     <string name="internet_connection_problem">Internet connection error!</string>
     <string name="tl_format">%1$s ₺</string>
@@ -75,5 +78,29 @@
     <string name="user_comments">Kullanıcı Yorumları</string>
     <string name="add_comment">Yorum Ekle</string>
     <string name="block_user">Kullanıcıyı Engelle</string>
+    <string name="unblock_user">Kullanıcı Engeli Kaldır</string>
     <string name="message">Mesaj</string>
+    <string name="send">Gönder</string>
+    <string name="comment_added_successful">Başarıyla yorum eklendi.</string>
+    <string name="rate_added_successful">Başarıyla kullanıcı oylandı.</string>
+    <string name="rate_user">Kullanıcıyı Oyla</string>
+    <string name="please_install_whatsapp">Önce Whatsapp\'ı kurmalısınız.</string>
+    <string name="message_template">Biletle ilgileniyorum. Yardımcı olabilir misiniz?</string>
+    <string name="not_comment_in_profile">Profil için yorum bulunamadı.</string>
+    <string name="no">Hayır</string>
+    <string name="yes">Evet</string>
+    <string name="are_you_sure_want_to_block_user">Kullanıcıyı engellemek istediğinizden emin misiniz?</string>
+    <string name="are_you_sure_want_to_unblock_user">Kullanıcının engelini kaldırmak istediğinizden emin misiniz?</string>
+    <string name="user_blocked">Kullanıcı engellendi!</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="warning">Uyarı</string>
+    <string name="close">Kapat</string>
+    <string name="successfully_added_favourites">Başarıyla favorilere eklendi</string>
+    <string name="successfully_updated_profile_photo">Profil fotoğrafı güncellendi.</string>
+    <string name="successfully_removed_favourites">Başarıyla favorilerden kaldırıldı</string>
+    <string name="successfully_created_ticket">Başarıyla bilet oluşturuldu.</string>
+    <string name="user_blocked_remove">Kullanıcı engeli kaldırıldı.</string>
+    <string name="successfully_updated_account_info">Hesap bilgileri başarıyla güncellendi.</string>
+    <string name="successfully_changed_password">Parola başarıyla değiştirildi.</string>
 </resources>

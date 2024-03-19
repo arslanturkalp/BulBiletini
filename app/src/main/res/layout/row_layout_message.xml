@@ -19,9 +19,11 @@
         android:padding="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivUserPhoto"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
+            android:scaleType="centerCrop"
             android:src="@color/black"
             app:shapeAppearanceOverlay="@style/CircleImageView" />
 
@@ -37,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/lato_regular"
+                android:fontFamily="@font/lato_bold"
                 android:textColor="@color/arrow_color"
                 android:textSize="15sp"
                 tools:text="User" />
@@ -49,7 +51,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/lato_light"
+                android:fontFamily="@font/lato_regular"
                 android:textColor="@color/grey"
                 android:textSize="13sp"
                 tools:text="Biletler hazır." />
@@ -86,6 +88,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#D9D9D9" />
+        android:background="@color/line_color" />
 
 </LinearLayout>

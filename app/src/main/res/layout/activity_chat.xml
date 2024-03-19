@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color">
 
-    <com.alparslanturk.kombineapp.custom.ApplicationToolbar
+    <com.alparslanturk.biletdevret.custom.ApplicationToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -22,12 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMessages"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:stackFromEnd="true"
                 tools:listitem="@layout/row_layout_received_message" />
         </LinearLayout>
 
@@ -38,51 +40,52 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/bg_color"
         android:baselineAligned="false"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="0.7"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="0.65"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeWidth="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtMessage"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:background="@drawable/bg_rounded"
+                android:fontFamily="@font/lato_regular"
                 android:imeOptions="actionSend"
                 android:inputType="text"
-                android:hint="@string/message"
                 android:maxLines="1"
                 android:padding="8dp"
                 android:textCursorDrawable="@drawable/color_cursor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnSend"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="0.2"
-            android:background="@drawable/bg_rounded"
-            android:backgroundTint="@color/primary"
-            android:drawableStart="@drawable/ic_send"
+            android:backgroundTint="@color/text_selector_default_green"
+            android:contentDescription="@string/send"
             android:fontFamily="@font/lato_bold"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:src="@drawable/ic_send"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:tint="@color/white" />
 
     </LinearLayout>
 
