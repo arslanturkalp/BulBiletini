@@ -7,7 +7,7 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
-    <com.alparslanturk.biletdevret.custom.ApplicationToolbar
+    <com.alparslanturk.bulbiletini.custom.ApplicationToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

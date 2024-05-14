@@ -17,7 +17,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/ic_stadium"
-            android:tint="@color/primary" />
+            android:tint="@color/green" />
 
     </LinearLayout>
 
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/ticket_bg_color"
                 app:boxStrokeWidth="0dp"
                 app:endIconDrawable="@drawable/show_password_selector"
                 app:endIconMode="password_toggle"
@@ -99,6 +99,7 @@
                 android:background="@drawable/bg_rounded"
                 android:backgroundTint="@color/primary"
                 android:fontFamily="@font/lato_bold"
+                android:foreground="@drawable/bg_ripple_effect"
                 android:text="@string/login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -113,6 +114,7 @@
                 android:height="60dp"
                 android:background="@drawable/bg_rounded"
                 android:fontFamily="@font/lato_bold"
+                android:foreground="@drawable/bg_ripple_effect"
                 android:text="@string/register"
                 android:textAllCaps="false"
                 android:textSize="15sp" />

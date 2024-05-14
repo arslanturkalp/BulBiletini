@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BiletDevret</string>
+    <string name="app_name">Bul Biletini</string>
     <string name="home">Ana Sayfa</string>
     <string name="favourites">Favoriler</string>
     <string name="messages">Mesajlar</string>
@@ -60,13 +60,18 @@
     <string name="description">Açıklama</string>
     <string name="select">Seç</string>
     <string name="tariffs">Tarifeler</string>
-    <string name="price_empty_warning">Fiyat boş geçilemez</string>
+    <string name="price_empty_warning">Fiyat boş geçilemez.</string>
     <string name="app_exit">Uygulamadan çıkmak istiyor musunuz?</string>
     <string name="name_empty_error">İsim alanı boş geçilemez.</string>
     <string name="surname_empty_error">Soyisim alanı boş geçilemez.</string>
     <string name="user_name_empty_error">Kullanıcı adı alanı boş geçilemez.</string>
     <string name="password_empty_error">Şifre alanı boş geçilemez.</string>
     <string name="mail_empty_error">Mail alanı boş geçilemez.</string>
+    <string name="match_empty_error">Maç alanı boş geçilemez.</string>
+    <string name="tariff_empty_error">Tarife alanı boş geçilemez.</string>
+    <string name="tribune_empty_error">Tribün alanı boş geçilemez.</string>
+    <string name="block_empty_error">Blok alanı boş geçilemez.</string>
+    <string name="order_empty_error">Sıra alanı boş geçilemez.</string>
     <string name="password_again_empty_error">Şifrenizi tekrar girmelisiniz.</string>
     <string name="passwords_not_match">Şifreler birbirleriyle eşleşmiyor.</string>
     <string name="count_format">%1$s adet</string>
@@ -82,6 +87,7 @@
     <string name="message">Mesaj</string>
     <string name="send">Gönder</string>
     <string name="comment_added_successful">Başarıyla yorum eklendi.</string>
+    <string name="ticket_notified_successful">Başarıyla ilan bildirildi.</string>
     <string name="rate_added_successful">Başarıyla kullanıcı oylandı.</string>
     <string name="rate_user">Kullanıcıyı Oyla</string>
     <string name="please_install_whatsapp">Önce Whatsapp\'ı kurmalısınız.</string>
@@ -103,4 +109,6 @@
     <string name="user_blocked_remove">Kullanıcı engeli kaldırıldı.</string>
     <string name="successfully_updated_account_info">Hesap bilgileri başarıyla güncellendi.</string>
     <string name="successfully_changed_password">Parola başarıyla değiştirildi.</string>
+    <string name="commented_user">%1$s kullanıcısına yaptığın yorumlar</string>
+    <string name="share_ticket">Bilet Paylaş</string>
 </resources>

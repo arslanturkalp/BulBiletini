@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.alparslanturk.biletdevret.custom.ApplicationToolbar
+        <com.alparslanturk.bulbiletini.custom.ApplicationToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -27,7 +27,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp"
             app:endIconDrawable="@drawable/show_password_selector"
             app:endIconMode="password_toggle"
@@ -57,6 +57,7 @@
             android:background="@drawable/bg_rounded"
             android:backgroundTint="@color/primary"
             android:fontFamily="@font/lato_bold"
+            android:foreground="@drawable/bg_ripple_effect"
             android:text="@string/send"
             android:textAllCaps="false"
             android:textColor="@color/white"

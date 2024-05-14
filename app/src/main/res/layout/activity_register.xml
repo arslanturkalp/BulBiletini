@@ -6,7 +6,7 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
-    <com.alparslanturk.biletdevret.custom.ApplicationToolbar
+    <com.alparslanturk.bulbiletini.custom.ApplicationToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp"
             app:endIconDrawable="@drawable/show_password_selector"
             app:endIconMode="password_toggle"
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/ticket_bg_color"
             app:boxStrokeWidth="0dp"
             app:endIconDrawable="@drawable/show_password_selector"
             app:endIconMode="password_toggle"
@@ -152,6 +152,7 @@
             android:height="60dp"
             android:background="@drawable/bg_rounded"
             android:backgroundTint="@color/primary"
+            android:foreground="@drawable/bg_ripple_effect"
             android:fontFamily="@font/lato_bold"
             android:text="@string/register"
             android:textAllCaps="false"

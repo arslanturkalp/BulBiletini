@@ -1,0 +1,6 @@
+package com.alparslanturk.bulbiletini.domain.entities.requests.user
+
+data class LoginRequest(
+    val username: String,
+    val password: String
+)

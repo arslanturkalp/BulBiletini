@@ -13,8 +13,8 @@
           android:endX="804.43"
           android:endY="-176.28"
           android:type="linear">
-        <item android:offset="0" android:color="#FFFFFFFF"/>
-        <item android:offset="1" android:color="#FF091442"/>
+        <item android:offset="0" android:color="@color/super_lig_ticket_bg_start"/>
+        <item android:offset="1" android:color="@color/super_lig_ticket_bg_end"/>
       </gradient>
     </aapt:attr>
   </path>

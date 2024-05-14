@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color">
 
-    <com.alparslanturk.biletdevret.custom.ApplicationToolbar
+    <com.alparslanturk.bulbiletini.custom.ApplicationToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,40 +48,41 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvHome"
-                    android:layout_width="90dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/lato_regular"
+                    android:fontFamily="@font/gotham_narrow_bold"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
                     tools:text="Galatasaray" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_weight="0.36"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="16dp">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivTournament"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    tools:src="@color/black" />
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_super_lig"
+                    android:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/lato_regular"
+                    android:fontFamily="@font/gotham_narrow_book"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
                     tools:text="20.09.2023\nÇarşamba\n19:45" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -91,10 +92,11 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/lato_regular"
+                    android:fontFamily="@font/gotham_narrow_book"
                     android:maxLines="3"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
                     tools:text="Rams Park" />
 
             </LinearLayout>
@@ -103,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -115,13 +117,14 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAway"
-                    android:layout_width="90dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/lato_regular"
+                    android:fontFamily="@font/gotham_narrow_bold"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
                     tools:text="Kopenhag" />
 
             </LinearLayout>
@@ -129,46 +132,28 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_weather" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvWeather"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="@font/lato_bold"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        tools:text="30°" />
-
-                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivAddFavourite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_not_favourite_black" />
+                    android:src="@drawable/ic_not_favourite_black"
+                    android:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivShare"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_share" />
+                    android:foreground="@drawable/bg_ripple_effect_oval"
+                    android:src="@drawable/ic_share"
+                    android:tint="@color/white" />
 
             </LinearLayout>
 
@@ -207,9 +192,9 @@
                             android:id="@+id/tvSeller"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/lato_bold"
+                            android:fontFamily="@font/lato_regular"
                             android:textColor="@color/arrow_color"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             tools:text="Ömer İhsan Oğuz" />
 
                         <RatingBar
@@ -225,7 +210,8 @@
                     <FrameLayout
                         android:id="@+id/flCall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/bg_ripple_effect_oval">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="36dp"
@@ -245,7 +231,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp">
+                        android:layout_marginEnd="16dp"
+                        android:foreground="@drawable/bg_ripple_effect_oval">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="36dp"
@@ -269,15 +256,24 @@
                     android:layout_height="72dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
-                    android:gravity="center">
+                    android:gravity="center_vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="24dp"
+                        android:src="@drawable/ic_turkish_lira" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvPrice"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_bold"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
+                        android:padding="16dp"
                         android:textColor="@color/arrow_color"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         tools:text="1500" />
 
                 </LinearLayout>
@@ -288,6 +284,7 @@
                     android:layout_height="72dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center_vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -300,11 +297,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
                         android:padding="16dp"
                         android:text="@string/notify_advert"
                         android:textColor="@color/arrow_color"
-                        android:textSize="16sp" />
+                        android:textSize="17sp" />
 
                 </LinearLayout>
 
@@ -327,19 +325,22 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
                         android:padding="16dp"
                         android:text="@string/stadium_plan"
                         android:textColor="@color/arrow_color"
-                        android:textSize="16sp" />
+                        android:textSize="17sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center_vertical"
                     android:minHeight="72dp">
 
@@ -354,10 +355,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
                         android:padding="16dp"
                         android:textColor="@color/arrow_color"
-                        android:textSize="16sp"
+                        android:textSize="17sp"
                         tools:text="Güney Üst 408 - 23" />
 
                 </LinearLayout>
@@ -381,10 +383,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/lato_bold"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
+                        android:justificationMode="inter_word"
                         android:padding="16dp"
                         android:textColor="@color/arrow_color"
-                        android:textSize="14sp"
+                        android:textSize="15sp"
                         tools:text="Bilet Kuzey Üst 422 de mevcuttur. İstenirse 2 bilet yan yana bulunur. Bilet Kuzey Üst 422 de mevcuttur. İstenirse 2 bilet yan yana bulunur.Bilet Kuzey Üst 422 de mevcuttur. İstenirse 2 bilet yan yana bulunur." />
 
                 </LinearLayout>

@@ -24,9 +24,11 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorAccent">@color/grey</item>
+    <style name="AlertDialogTheme" parent="Theme.Material3.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/green</item>
+        <item name="android:windowBackground">@color/ticket_bg_color</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textColorPrimary">@color/arrow_color</item>
     </style>
 
     <style name="FormEditText">

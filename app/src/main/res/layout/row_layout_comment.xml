@@ -13,6 +13,19 @@
     android:paddingBottom="8dp">
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivCommentDot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:foreground="@drawable/bg_ripple_effect_oval"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        android:src="@color/green" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivProfile"
         android:layout_width="50dp"
         android:layout_height="50dp"

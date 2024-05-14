@@ -17,5 +17,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BiletDevret"
+rootProject.name = "BulBiletini"
 include(":app")

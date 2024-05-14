@@ -16,4 +16,7 @@
 
     <color name="golden">#FFD700</color>
     <color name="line_color">#1D333D</color>
+
+    <color name="super_lig_ticket_bg_start">#FF340074</color>
+    <color name="super_lig_ticket_bg_end">#FF0F0021</color>
 </resources>
