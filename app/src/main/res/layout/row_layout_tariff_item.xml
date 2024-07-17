@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="80dp"
     android:layout_marginStart="4dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="4dp"
@@ -13,31 +13,44 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
-        android:orientation="vertical">
+        android:outlineProvider="background"
+        android:elevation="8dp"
+        android:src="@drawable/ic_star" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:elevation="8dp"
-            android:src="@drawable/ic_star" />
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTariffName"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
-        android:fontFamily="@font/lato_regular"
-        android:textColor="@color/arrow_color"
-        android:textSize="14sp"
-        tools:text="Galatasaray - Kopenhag" />
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTariffName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/arrow_color"
+            android:textSize="14sp"
+            tools:text="1 Maç Vitrin Paketi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTariffDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/arrow_color"
+            android:textSize="12sp"
+            tools:text="1 biletiniz anasayfada görünür." />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPrice"

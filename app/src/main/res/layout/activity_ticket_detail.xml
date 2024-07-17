@@ -72,7 +72,7 @@
                     android:id="@+id/ivTournament"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:src="@drawable/ic_super_lig"
+                    tools:src="@drawable/ic_super_lig"
                     android:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatTextView

@@ -3,6 +3,7 @@ package com.alparslanturk.bulbiletini.ui.home
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +17,18 @@ import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alparslanturk.bulbiletini.R
+import com.alparslanturk.bulbiletini.application.BulBiletini.Companion.TAG
+import com.alparslanturk.bulbiletini.application.SessionManager.getPassword
 import com.alparslanturk.bulbiletini.application.SessionManager.getUserID
+import com.alparslanturk.bulbiletini.application.SessionManager.getUserName
 import com.alparslanturk.bulbiletini.data.entities.models.Club
 import com.alparslanturk.bulbiletini.data.entities.models.MessageEvent
 import com.alparslanturk.bulbiletini.data.entities.models.Result
 import com.alparslanturk.bulbiletini.data.entities.models.Ticket
 import com.alparslanturk.bulbiletini.databinding.FragmentHomeBinding
 import com.alparslanturk.bulbiletini.domain.entities.requests.club.ClubGetListWithTicketsRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.user.UpdateNotificationTokenRequest
 import com.alparslanturk.bulbiletini.ui.adapters.HomeTeamsAdapter
 import com.alparslanturk.bulbiletini.ui.adapters.TicketsAdapter
 import com.alparslanturk.bulbiletini.ui.base.BaseFragment
@@ -33,6 +39,8 @@ import com.alparslanturk.bulbiletini.ui.teams.TeamsActivity
 import com.alparslanturk.bulbiletini.ui.ticketdetail.TicketDetailActivity
 import com.alparslanturk.bulbiletini.utils.setVisible
 import com.alparslanturk.bulbiletini.utils.showAlertDialogTheme
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,6 +74,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         setupSwipeRefresh()
         setupObservers()
         setupUI()
+        requestToken()
 
         requireActivity().intent.apply {
             if (data != null && action == Intent.ACTION_VIEW) {
@@ -74,6 +83,18 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         }
 
         viewModel.loginTest()
+    }
+
+    private fun requestToken() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
+                }
+                val token = task.result
+                viewModel.updateNotificationToken(UpdateNotificationTokenRequest(getUserID(), token))
+            })
     }
 
     private fun setupToolbar() {
@@ -158,8 +179,6 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                                         data.apply {
                                             wasNotSeenTotalMessageCount.apply { if (this != 0) (activity as MainActivity).setNotificationBadge(this) }
                                         }
-                                    } else {
-                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
                                     }
                                 }
                             }
@@ -170,13 +189,38 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 launch(Dispatchers.Main) {
                     loginTestFlow.collect {
                         when (it) {
+                            is Result.Error -> { viewModel.signIn(LoginRequest(getUserName(), getPassword())) }
+                            is Result.Loading -> {}
+                            is Result.Success -> {}
+                        }
+                    }
+                }
+
+                launch(Dispatchers.Main) {
+                    loginFlow.collect {
+                        when (it) {
                             is Result.Error -> {
+                                dismissProgress()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
                             is Result.Loading -> {}
                             is Result.Success -> {
                                 dismissProgress()
+                            }
+                        }
+                    }
+                }
+
+                launch(Dispatchers.Main) {
+                    updateNotificationTokenFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                dismissProgress()
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                dismissProgress()
                             }
                         }
                     }

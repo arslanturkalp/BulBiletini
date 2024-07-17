@@ -24,6 +24,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.match.GetMatchLis
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.AddCommentResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetMyCommentsResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.projectsettings.ProjectSettingsGetWithNameResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetMyTariffsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetTariffListResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTariffResponse
@@ -35,6 +36,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.user.deleteuser.U
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.forgotpassword.ForgotPasswordResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.getuserdetail.GetUserDetailResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.register.RegisterResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.user.updatenotificationtoken.UpdateNotificationTokenResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.updateuser.UpdateUserInfoResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.verificationcode.VerificationCodeResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.userblacklist.getblockedusers.GetBlockedUsersResponse
@@ -62,7 +64,7 @@ interface ApiService {
     @POST("api/User/UserSetVerificationCode")
     suspend fun getVerificationCode(@Query("email") email: String): Response<VerificationCodeResponse>
 
-    @HTTP(method = "DELETE", path = "api/User/UserDelete", hasBody = true)
+    @POST("api/User/UserDelete")
     suspend fun deleteUser(@Body userDeleteRequest: UserDeleteRequest): Response<UserDeleteResponse>
 
     @POST("api/User/UserUpdateInfo")
@@ -73,6 +75,9 @@ interface ApiService {
 
     @GET("api/User/UserGetDetail")
     suspend fun getUserDetail(@Query("userId") userID: String): Response<GetUserDetailResponse>
+
+    @POST("api/User/UserUpdateNotificationToken")
+    suspend fun updateNotificationToken(@Query("userId") userID: String, @Query("notificationToken") notificationToken: String): Response<UpdateNotificationTokenResponse>
 
     //Club Services
     @GET("api/Club/ClubGetListWithTickets")
@@ -161,4 +166,8 @@ interface ApiService {
 
     @GET("/UserIsLoginTest")
     suspend fun testLogin(): Response<ResponseBody>
+
+    //ProjectSettings Services
+    @GET("/api/ProjectSettings/ProjectSettingsGetWithName")
+    suspend fun projectSettingsGetWithName(@Query("settingName") settingName: String): Response<ProjectSettingsGetWithNameResponse>
 }

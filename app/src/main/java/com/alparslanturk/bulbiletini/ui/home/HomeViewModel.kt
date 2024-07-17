@@ -3,13 +3,21 @@ package com.alparslanturk.bulbiletini.ui.home
 import androidx.lifecycle.viewModelScope
 import com.alparslanturk.bulbiletini.data.entities.models.Result
 import com.alparslanturk.bulbiletini.domain.entities.requests.club.ClubGetListWithTicketsRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.user.UpdateNotificationTokenRequest
 import com.alparslanturk.bulbiletini.domain.entities.responses.club.clubgetlistwithtickets.ClubGetListWithTicketsResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.user.login.LoginResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.user.updatenotificationtoken.UpdateNotificationTokenResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.usermessage.GetUserMessagesResponse
 import com.alparslanturk.bulbiletini.domain.usecases.LoginTestUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.club.ClubGetListWithTicketsUseCase
+import com.alparslanturk.bulbiletini.domain.usecases.projectsettings.ProjectSettingsGetWithNameUseCase
+import com.alparslanturk.bulbiletini.domain.usecases.user.LoginUseCase
+import com.alparslanturk.bulbiletini.domain.usecases.user.UpdateNotificationTokenUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.usermessage.GetUserMessagesUseCase
 import com.alparslanturk.bulbiletini.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +28,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val clubGetListWithTicketsUseCase: ClubGetListWithTicketsUseCase,
     private val getUserMessagesUseCase: GetUserMessagesUseCase,
-    private val loginTestUseCase: LoginTestUseCase
+    private val loginTestUseCase: LoginTestUseCase,
+    private val loginUseCase: LoginUseCase,
+    private val updateNotificationTokenUseCase: UpdateNotificationTokenUseCase
 ) : BaseViewModel() {
 
     private val _clubsGetListWithTicketsFlow: MutableStateFlow<Result<ClubGetListWithTicketsResponse>> = MutableStateFlow(Result.Loading())
@@ -31,6 +41,12 @@ class HomeViewModel @Inject constructor(
 
     private val _loginTestFlow: MutableStateFlow<Result<ResponseBody>> = MutableStateFlow(Result.Loading())
     val loginTestFlow: StateFlow<Result<ResponseBody>> = _loginTestFlow
+
+    private val _loginFlow: MutableStateFlow<Result<LoginResponse>> = MutableStateFlow(Result.Loading())
+    val loginFlow: StateFlow<Result<LoginResponse>> = _loginFlow
+
+    private val _updateNotificationTokenFlow: MutableStateFlow<Result<UpdateNotificationTokenResponse>> = MutableStateFlow(Result.Loading())
+    val updateNotificationTokenFlow: StateFlow<Result<UpdateNotificationTokenResponse>> = _updateNotificationTokenFlow
 
     fun getClubsAndTickets(clubGetListWithTicketsRequest: ClubGetListWithTicketsRequest) = viewModelScope.launch {
         clubGetListWithTicketsUseCase(clubGetListWithTicketsRequest).collect {
@@ -58,6 +74,26 @@ class HomeViewModel @Inject constructor(
                 is Result.Error -> _loginTestFlow.emit(it)
                 is Result.Loading -> _loginTestFlow.emit(it)
                 is Result.Success -> _loginTestFlow.emit(it)
+            }
+        }
+    }
+
+    fun signIn(loginRequest: LoginRequest) = viewModelScope.launch(Dispatchers.Main) {
+        loginUseCase(loginRequest).collect {
+            when (it) {
+                is Result.Error -> _loginFlow.emit(it)
+                is Result.Loading -> _loginFlow.emit(it)
+                is Result.Success -> _loginFlow.emit(it)
+            }
+        }
+    }
+
+    fun updateNotificationToken(updateNotificationTokenRequest: UpdateNotificationTokenRequest) = viewModelScope.launch(Dispatchers.Main) {
+        updateNotificationTokenUseCase(updateNotificationTokenRequest).collect {
+            when (it) {
+                is Result.Error -> _updateNotificationTokenFlow.emit(it)
+                is Result.Loading -> _updateNotificationTokenFlow.emit(it)
+                is Result.Success -> _updateNotificationTokenFlow.emit(it)
             }
         }
     }

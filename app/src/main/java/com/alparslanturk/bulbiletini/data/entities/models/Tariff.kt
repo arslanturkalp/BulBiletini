@@ -9,4 +9,5 @@ data class Tariff(
     val name: String,
     val description: String,
     val price: String,
+    val marketId: String?
 ) : Parcelable

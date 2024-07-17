@@ -92,6 +92,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+                                                <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="/private/var/folders/rc/tzwz6rhj76x485x6r70qz0qm0000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
@@ -104,8 +105,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_bilet_devret.xml" />
-                                                <entry key="scalingPercent" value="55" />
+                                                <entry key="imagePath" value="$USER_HOME$/Downloads/resize-1720532849994025299Group2345.png" />
+                                                <entry key="scalingPercent" value="99" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -138,7 +140,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="339a46" />
+                                      <entry key="backgroundColor" value="388e3c" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -344,8 +346,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="bg_transparent_ticket" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/Group 69 (1).svg" />
+                            <entry key="outputName" value="google_icon_logo_svgrepo_com" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/google-icon-logo-svgrepo-com.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -135,7 +135,7 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
                                 it.body?.apply {
                                     if (code == 200) {
                                         isAnyUpdate = true
-                                        showAlertDialogTheme(title = getString(R.string.done), contentMessage = message)
+                                        showAlertDialogTheme(title = getString(R.string.tariff_buy_success), contentMessage = message)
                                     } else {
                                         showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
                                     }
@@ -149,21 +149,15 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun showRequireDialog(tariff: Tariff) {
-        when (tariff.name) {
-            "1 Maç Vitrin" -> {
-                billingClient.startConnection(object : BillingClientStateListener {
-                    override fun onBillingSetupFinished(billingResult: BillingResult) {
-                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                            receiveVitrin()
-                        }
-                    }
-
-                    override fun onBillingServiceDisconnected() {
-                        showAlertDialogTheme(getString(R.string.error), getString(R.string.error))
-                    }
-                })
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    receiveTariff(tariff)
+                }
             }
-        }
+
+            override fun onBillingServiceDisconnected() {}
+        })
     }
 
     private fun handlePurchase(purchase: Purchase) {
@@ -177,31 +171,29 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
                 if (it.responseCode == BillingClient.BillingResponseCode.OK) {
                     for (pur in purchase.products) {
-                        if (pur.equals("championsleague")) {
-                            consumePurchase(purchase)
-                        }
+                        consumePurchase(purchase, pur)
                     }
                 }
             }
         }
     }
 
-    private fun consumePurchase(purchase: Purchase) {
+    private fun consumePurchase(purchase: Purchase, tariffID: String) {
         val params = ConsumeParams.newBuilder()
             .setPurchaseToken(purchase.purchaseToken)
             .build()
 
         billingClient.consumeAsync(params) { _, _ ->
-            viewModel.purchaseTariff(PurchaseTariffRequest(getUserID(), "a85267fd-5906-4ea5-41e8-08dc376bbfa2"))
+            purchaseTariff(tariffID)
         }
     }
 
-    private fun receiveVitrin() {
+    private fun receiveTariff(tariff: Tariff) {
         val productList = ArrayList<QueryProductDetailsParams.Product>()
 
         productList.add(
             QueryProductDetailsParams.Product.newBuilder()
-                .setProductId("championsleague")
+                .setProductId(tariff.marketId.orEmpty())
                 .setProductType(BillingClient.ProductType.INAPP)
                 .build()
         )
@@ -227,7 +219,7 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         billingClient.launchBillingFlow(this, billingFlowParams)
     }
 
-    private fun purchaseTariff(tariff: Tariff) = viewModel.purchaseTariff(PurchaseTariffRequest(getUserID(), tariff.id))
+    private fun purchaseTariff(tariffID: String) = viewModel.purchaseTariff(PurchaseTariffRequest(getUserID(), tariffID))
 
     private fun returnResult() {
         setResult(RESULT_OK)

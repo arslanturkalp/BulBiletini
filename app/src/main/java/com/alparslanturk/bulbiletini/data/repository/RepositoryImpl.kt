@@ -28,6 +28,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.match.GetMatchLis
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.AddCommentResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetMyCommentsResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.projectsettings.ProjectSettingsGetWithNameResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetMyTariffsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetTariffListResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTariffResponse
@@ -40,6 +41,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.user.forgotpasswo
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.getuserdetail.GetUserDetailResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.login.LoginResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.register.RegisterResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.user.updatenotificationtoken.UpdateNotificationTokenResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.updateuser.UpdateUserInfoResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.verificationcode.VerificationCodeResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.userblacklist.getblockedusers.GetBlockedUsersResponse
@@ -407,6 +409,28 @@ class RepositoryImpl @Inject constructor(private val apiService: ApiService, pri
 
     override suspend fun loginTest(): Result<ResponseBody> {
         val response = apiService.testLogin()
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun projectSettingsGetWithName(settingName: String): Result<ProjectSettingsGetWithNameResponse> {
+        val response = apiService.projectSettingsGetWithName(settingName)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun userUpdateNotificationToken(userId: String, notificationToken: String): Result<UpdateNotificationTokenResponse> {
+        val response = apiService.updateNotificationToken(userId, notificationToken)
         return try {
             return if (response.isSuccessful) {
                 Result.Success(response.body(), response.code(), response.message())

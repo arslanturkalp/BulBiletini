@@ -48,10 +48,12 @@ class RegisterActivity : BaseActivity() {
                         }
                         is Result.Loading -> {}
                         is Result.Success -> {
-                            if (it.code == 300) {
-                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
-                            } else {
-                                navigateToLogin()
+                            it.body!!.apply {
+                                if (code == 300) {
+                                    showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
+                                } else {
+                                    showAlertDialogTheme(getString(R.string.success), message, onPositiveButtonClick = { navigateToLogin() })
+                                }
                             }
                         }
                     }

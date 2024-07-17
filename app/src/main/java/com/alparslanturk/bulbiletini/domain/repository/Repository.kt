@@ -26,6 +26,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.match.GetMatchLis
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.AddCommentResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetMyCommentsResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.projectsettings.ProjectSettingsGetWithNameResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetMyTariffsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetTariffListResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTariffResponse
@@ -38,6 +39,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.user.forgotpasswo
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.getuserdetail.GetUserDetailResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.login.LoginResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.register.RegisterResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.user.updatenotificationtoken.UpdateNotificationTokenResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.updateuser.UpdateUserInfoResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.verificationcode.VerificationCodeResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.userblacklist.getblockedusers.GetBlockedUsersResponse
@@ -114,4 +116,8 @@ interface Repository {
     suspend fun notifyTicket(notifyTicketRequest: NotifyTicketRequest): Result<NotifyTicketResponse>
 
     suspend fun loginTest(): Result<ResponseBody>
+
+    suspend fun projectSettingsGetWithName(settingName: String): Result<ProjectSettingsGetWithNameResponse>
+
+    suspend fun userUpdateNotificationToken(userId: String, notificationToken: String): Result<UpdateNotificationTokenResponse>
 }

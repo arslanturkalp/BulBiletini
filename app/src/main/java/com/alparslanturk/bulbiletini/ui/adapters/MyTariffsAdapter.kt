@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alparslanturk.bulbiletini.R
 import com.alparslanturk.bulbiletini.data.entities.models.MyTariff
 import com.alparslanturk.bulbiletini.databinding.RowLayoutTariffItemBinding
+import com.alparslanturk.bulbiletini.utils.setGone
 
 class MyTariffsAdapter(private val onItemClick: (MyTariff) -> Unit) : RecyclerView.Adapter<MyTariffsAdapter.TicketsViewHolder>() {
 
@@ -30,6 +31,7 @@ class MyTariffsAdapter(private val onItemClick: (MyTariff) -> Unit) : RecyclerVi
         fun bind(item: MyTariff) {
             with(binding) {
                 tvTariffName.text = item.tariffCategoryName
+                tvTariffDescription.setGone()
                 tvPrice.apply {
                     text = String.format(context.getString(R.string.count_format), item.quantity.toString())
                 }

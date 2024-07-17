@@ -1,5 +1,6 @@
 package com.alparslanturk.bulbiletini.ui.settings
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
@@ -140,6 +141,7 @@ class SettingsFragment : BaseFragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun setupUI() {
         binding.apply {
             tvUserName.text = getUserName()
@@ -160,6 +162,7 @@ class SettingsFragment : BaseFragment() {
 
             ivProfile.setOnClickListener { showOptionDialog() }
             ivEditProfilePhoto.setOnClickListener { showOptionDialog() }
+            tvVersion.text = "Versiyon ${requireActivity().packageManager.getPackageInfo(requireActivity().packageName, 0).versionName}"
         }
     }
 

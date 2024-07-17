@@ -111,4 +111,10 @@
     <string name="successfully_changed_password">Parola başarıyla değiştirildi.</string>
     <string name="commented_user">%1$s kullanıcısına yaptığın yorumlar</string>
     <string name="share_ticket">Bilet Paylaş</string>
+    <string name="download">İndir\n</string>
+    <string name="new_version_available">Yeni bir versiyon mevcut!</string>
+    <string name="new_version_title">Zorunlu Güncelleme</string>
+    <string name="tariff_buy_success">Tarife başarıyla alındı.</string>
+    <string name="success">Başarılı</string>
+    <string name="sign_in_with_google">Google ile Giriş Yap</string>
 </resources>

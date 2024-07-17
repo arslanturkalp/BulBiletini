@@ -77,7 +77,7 @@ class TicketDetailActivity : BaseActivity() {
         with(binding) {
             ivHomeLogo.apply { Glide.with(context).load("${BASE_URL}${ticket.homeTeamLogo}").into(this) }
             ivAwayLogo.apply { Glide.with(context).load("${BASE_URL}${ticket.awayTeamLogo}").into(this) }
-            //ivTournament.apply { Glide.with(context).load("${BASE_URL}${ticket.leagueImagePath}").into(this) }
+            ivTournament.apply { Glide.with(context).load(ticket.leagueImagePath).into(this) }
             tvHome.text = ticket.homeTeamName
             tvAway.text = ticket.awayTeamName
             tvStadium.text = ticket.homeTeamStadium

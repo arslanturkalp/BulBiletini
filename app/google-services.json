@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "544774116849",
+    "project_id": "bulbiletini",
+    "storage_bucket": "bulbiletini.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544774116849:android:7decbb96c170652923a050",
+        "android_client_info": {
+          "package_name": "com.alparslanturk.biletdevret"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544774116849-f3dejb5muubmsqvf5bfdqnfbspm9fe1a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alparslanturk.biletdevret",
+            "certificate_hash": "48c41e7ea1c35d85e0d712c597284a52f9a96257"
+          }
+        },
+        {
+          "client_id": "544774116849-p59qtv9lkoehf5tfikd2kr6v8ifp7eiu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTToXZ95_crgMbGcj-ZJAsEQnOn1UBl3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544774116849-p59qtv9lkoehf5tfikd2kr6v8ifp7eiu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544774116849-46q176rcmdfcum4timhtahlcetmqas4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.firat.BulBiletiniHemen"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

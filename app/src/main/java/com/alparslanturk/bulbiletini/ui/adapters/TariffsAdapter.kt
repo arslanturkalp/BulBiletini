@@ -30,6 +30,7 @@ class TariffsAdapter(private val onItemClick: (Tariff) -> Unit) : RecyclerView.A
         fun bind(item: Tariff) {
             with(binding) {
                 tvTariffName.text = item.name
+                tvTariffDescription.text = item.description
                 tvPrice.apply {
                     text = String.format(context.getString(R.string.tl_format), item.price)
                 }
