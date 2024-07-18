@@ -117,4 +117,6 @@
     <string name="tariff_buy_success">Tarife başarıyla alındı.</string>
     <string name="success">Başarılı</string>
     <string name="sign_in_with_google">Google ile Giriş Yap</string>
+    <string name="send_suggestion_and_complaint">Talep ve Şikayet Gönder</string>
+    <string name="successfully_sended_suggestion">Önerin başarıyla tarafımıza ulaştı. Uygulamayı senin için daha iyi hale getirmek üzere çalışıyor olacağız.</string>
 </resources>

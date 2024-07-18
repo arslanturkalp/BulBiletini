@@ -1,7 +1,10 @@
 package com.alparslanturk.bulbiletini.ui.home
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
-import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -75,14 +80,9 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         setupObservers()
         setupUI()
         requestToken()
+        checkPermissions()
 
-        requireActivity().intent.apply {
-            if (data != null && action == Intent.ACTION_VIEW) {
-                println("url:" + data?.query.orEmpty().substringAfter("ticketID="))
-            }
-        }
-
-        viewModel.loginTest()
+        //viewModel.loginTest()
     }
 
     private fun requestToken() {
@@ -271,6 +271,20 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private fun navigateToTeamDetail(team: Club) = startActivity(TeamDetailActivity.createIntent(requireContext(), team))
 
     private fun navigateToTicketDetail(ticket: Ticket) = resultRefreshList.launch(TicketDetailActivity.createIntent(requireContext(), ticket))
+
+    private fun checkPermissions() {
+        if (checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), getRequiredPermissions(), 1)
+        }
+    }
+
+    @SuppressLint("InlinedApi")
+    private fun getRequiredPermissions(): Array<String> = when (isNotificationPermissionRequired()) {
+        true -> arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.POST_NOTIFICATIONS)
+        false -> arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    private fun isNotificationPermissionRequired() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED else false
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: MessageEvent) {

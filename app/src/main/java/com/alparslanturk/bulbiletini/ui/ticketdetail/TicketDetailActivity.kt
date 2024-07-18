@@ -103,7 +103,7 @@ class TicketDetailActivity : BaseActivity() {
                 ShareCompat.IntentBuilder(this@TicketDetailActivity)
                     .setType("text/plain")
                     .setChooserTitle(getString(R.string.share_ticket))
-                    .setText("http://www.biletdevret.com/ticketID=${ticket.ticketId}")
+                    .setText("http://www.bulbiletini.com/ticketID=${ticket.ticketId}")
                     .startChooser()
             }
 

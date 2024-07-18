@@ -27,6 +27,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.Ad
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetMyCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.projectsettings.ProjectSettingsGetWithNameResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.suggestionandcomplaint.SendSuggestionAndComplaintResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetMyTariffsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetTariffListResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTariffResponse
@@ -120,4 +121,6 @@ interface Repository {
     suspend fun projectSettingsGetWithName(settingName: String): Result<ProjectSettingsGetWithNameResponse>
 
     suspend fun userUpdateNotificationToken(userId: String, notificationToken: String): Result<UpdateNotificationTokenResponse>
+
+    suspend fun sendSuggestionAndComplaint(userID: String, requestText: String): Result<SendSuggestionAndComplaintResponse>
 }

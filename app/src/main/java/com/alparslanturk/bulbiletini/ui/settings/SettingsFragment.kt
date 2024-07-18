@@ -32,6 +32,7 @@ import com.alparslanturk.bulbiletini.ui.main.MainActivity
 import com.alparslanturk.bulbiletini.ui.settings.blockedusers.BlockedUsersActivity
 import com.alparslanturk.bulbiletini.ui.settings.mycomments.MyCommentsActivity
 import com.alparslanturk.bulbiletini.ui.settings.mytariffs.MyTariffsActivity
+import com.alparslanturk.bulbiletini.ui.settings.suggestionandcomplaint.SuggestionAndComplaintActivity
 import com.alparslanturk.bulbiletini.ui.settings.tariffs.TariffsActivity
 import com.alparslanturk.bulbiletini.ui.settings.tickets.TicketsActivity
 import com.alparslanturk.bulbiletini.ui.settings.updateuser.UpdateUserInfoActivity
@@ -148,10 +149,10 @@ class SettingsFragment : BaseFragment() {
             llBuyTariff.setOnClickListener { startActivity(TariffsActivity.createIntent(requireContext())) }
             llUpdateUserInfo.setOnClickListener { resultUserDetail.launch(UpdateUserInfoActivity.createIntent(requireContext())) }
             llMyTickets.setOnClickListener { startActivity(TicketsActivity.createIntent(requireContext(), getUserID())) }
-            llDeleteAccount.setOnClickListener { startActivity(UserDeleteActivity.createIntent(requireContext())) }
             llMyComments.setOnClickListener { startActivity(MyCommentsActivity.createIntent(requireContext())) }
             llMyTariffs.setOnClickListener { startActivity(MyTariffsActivity.createIntent(requireContext())) }
             llBlockedUsers.setOnClickListener { startActivity(BlockedUsersActivity.createIntent(requireContext())) }
+            llSuggestionAndComplaint.setOnClickListener { startActivity(SuggestionAndComplaintActivity.createIntent(requireContext())) }
             llSignOut.setOnClickListener {
                 clearUserName()
                 clearPassword()
@@ -159,6 +160,7 @@ class SettingsFragment : BaseFragment() {
                 clearUserID()
                 navigateToLogin()
             }
+            llDeleteAccount.setOnClickListener { startActivity(UserDeleteActivity.createIntent(requireContext())) }
 
             ivProfile.setOnClickListener { showOptionDialog() }
             ivEditProfilePhoto.setOnClickListener { showOptionDialog() }

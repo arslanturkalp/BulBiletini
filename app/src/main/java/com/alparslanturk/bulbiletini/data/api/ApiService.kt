@@ -5,6 +5,7 @@ import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.AddFavou
 import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.RemoveFavouriteClubRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.RemoveFavouriteTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.profilecomment.AddCommentRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.suggestionandcomplaint.SendSuggestionAndComplaintRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.tariff.PurchaseTariffRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.CreateTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.NotifyTicketRequest
@@ -25,6 +26,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.Ad
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.profilecomment.GetMyCommentsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.projectsettings.ProjectSettingsGetWithNameResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.suggestionandcomplaint.SendSuggestionAndComplaintResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetMyTariffsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.GetTariffListResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTariffResponse
@@ -170,4 +172,9 @@ interface ApiService {
     //ProjectSettings Services
     @GET("/api/ProjectSettings/ProjectSettingsGetWithName")
     suspend fun projectSettingsGetWithName(@Query("settingName") settingName: String): Response<ProjectSettingsGetWithNameResponse>
+
+    //SendSuggestionAndComplaintServices
+    @POST("/api/SuggestionAndComplaint/SuggestionAndComplaintCreate")
+    suspend fun sendSuggestionAndComplaint(@Body sendSuggestionAndComplaintRequest: SendSuggestionAndComplaintRequest): Response<SendSuggestionAndComplaintResponse>
+
 }
