@@ -144,6 +144,36 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:id="@+id/llUsageConditions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cbUsageConditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:backgroundTint="@color/color_selector_nav_icon"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUsageConditions"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@string/i_have_read_usage_conditions" />
+
+        </LinearLayout>
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
@@ -152,8 +182,8 @@
             android:height="60dp"
             android:background="@drawable/bg_rounded"
             android:backgroundTint="@color/primary"
-            android:foreground="@drawable/bg_ripple_effect"
             android:fontFamily="@font/lato_bold"
+            android:foreground="@drawable/bg_ripple_effect"
             android:text="@string/register"
             android:textAllCaps="false"
             android:textColor="@color/white"

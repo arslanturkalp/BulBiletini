@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.alparslanturk.bulbiletini.ui.login
 
 import android.content.Context
@@ -22,9 +24,9 @@ import com.alparslanturk.bulbiletini.databinding.ActivityLoginBinding
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.RegisterRequest
 import com.alparslanturk.bulbiletini.ui.base.BaseActivity
+import com.alparslanturk.bulbiletini.ui.login.verificationcode.VerificationCodeActivity
 import com.alparslanturk.bulbiletini.ui.main.MainActivity
 import com.alparslanturk.bulbiletini.ui.register.RegisterActivity
-import com.alparslanturk.bulbiletini.ui.login.verificationcode.VerificationCodeActivity
 import com.alparslanturk.bulbiletini.utils.addOnBackPressedListener
 import com.alparslanturk.bulbiletini.utils.setTextUnderLine
 import com.alparslanturk.bulbiletini.utils.showAlertDialogTheme
@@ -59,9 +61,7 @@ class LoginActivity : BaseActivity() {
         }
 
         binding.apply {
-            btnLogin.setOnClickListener {
-                viewModel.signIn(LoginRequest(edtUserName.text.toString(), edtPassword.text.toString()))
-            }
+            btnLogin.setOnClickListener { viewModel.signIn(LoginRequest(edtUserName.text.toString(), edtPassword.text.toString())) }
             btnRegister.setOnClickListener { navigateToRegister() }
             btnGoogle.setOnClickListener { createNewGoogleUser() }
             tvForgotMyPassword.apply {

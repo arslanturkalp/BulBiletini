@@ -141,6 +141,9 @@
         <activity
             android:name=".ui.settings.suggestionandcomplaint.SuggestionAndComplaintActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.webview.WebViewActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".application.MyFirebaseMessagingService"

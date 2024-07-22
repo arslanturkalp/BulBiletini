@@ -11,6 +11,7 @@ import com.alparslanturk.bulbiletini.databinding.ActivityRegisterBinding
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.RegisterRequest
 import com.alparslanturk.bulbiletini.ui.base.BaseActivity
 import com.alparslanturk.bulbiletini.ui.login.LoginActivity
+import com.alparslanturk.bulbiletini.ui.webview.WebViewActivity
 import com.alparslanturk.bulbiletini.utils.showAlertDialogTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,6 +22,8 @@ class RegisterActivity : BaseActivity() {
     private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
 
     private val viewModel by viewModels<RegisterViewModel>()
+
+    private var hasRead: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +67,12 @@ class RegisterActivity : BaseActivity() {
 
     private fun setupUI() {
         binding.apply {
+            llUsageConditions.setOnClickListener {
+                hasRead = true
+                startActivity(WebViewActivity.createIntent(this@RegisterActivity, getString(R.string.user_aggreement), "http://bulbiletini.com/usage_conditions.html"))
+            }
             btnRegister.setOnClickListener {
-                validateRegister(edtName.text.toString(), edtSurname.text.toString(), edtUserName.text.toString().trim(), edtPassword.text.toString().trim(), edtPasswordAgain.text.toString().trim(), edtMail.text.toString().trim())
+                validateRegister(edtName.text.toString(), edtSurname.text.toString(), edtUserName.text.toString().trim(), edtPassword.text.toString().trim(), edtPasswordAgain.text.toString().trim(), edtMail.text.toString().trim(), cbUsageConditions.isChecked)
                 when (viewModel.getErrorList().isEmpty()) {
                     true ->
                         viewModel.register(
@@ -83,7 +90,7 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
-    private fun validateRegister(name: String, surname: String, userName: String, password: String, passwordAgain: String, mail: String) {
+    private fun validateRegister(name: String, surname: String, userName: String, password: String, passwordAgain: String, mail: String, isChecked: Boolean) {
         viewModel.clearErrorList()
 
         binding.apply {
@@ -107,6 +114,12 @@ class RegisterActivity : BaseActivity() {
             }
             if (mail.isEmpty()) {
                 viewModel.addError(R.string.mail_empty_error)
+            }
+            if (!isChecked) {
+                viewModel.addError(R.string.not_checked_usage_conditions)
+            }
+            if (isChecked && !hasRead) {
+                viewModel.addError(R.string.must_read_user_agreement)
             }
         }
     }

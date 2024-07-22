@@ -119,4 +119,8 @@
     <string name="sign_in_with_google">Google ile Giriş Yap</string>
     <string name="send_suggestion_and_complaint">Talep ve Şikayet Gönder</string>
     <string name="successfully_sended_suggestion">Önerin başarıyla tarafımıza ulaştı. Uygulamayı senin için daha iyi hale getirmek üzere çalışıyor olacağız.</string>
+    <string name="i_have_read_usage_conditions">Kullanıcı sözleşmesini okudum, kabul ediyorum.</string>
+    <string name="not_checked_usage_conditions">Kullanıcı sözleşmesini onaylayınız.</string>
+    <string name="user_aggreement">Kullanıcı Sözleşmesi</string>
+    <string name="must_read_user_agreement">Kullanıcı sözleşmesini okuyunuz.</string>
 </resources>
