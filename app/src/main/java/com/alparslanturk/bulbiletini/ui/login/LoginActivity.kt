@@ -38,7 +38,6 @@ import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class LoginActivity : BaseActivity() {
 
@@ -89,7 +88,7 @@ class LoginActivity : BaseActivity() {
                                             updateUserID(id)
                                             updateUserName(username)
                                             updateMail(email)
-                                            updatePassword(binding.edtPassword.text.toString())
+                                            updatePassword(if (viewModel.getIsFromGmail()) "GmailUser" else binding.edtPassword.text.toString())
                                             updateToken(token.accessToken)
                                             updateRefreshToken(token.refreshToken)
                                             navigateToMain()
@@ -156,8 +155,10 @@ class LoginActivity : BaseActivity() {
             )
             updateUserName(userName)
             updatePassword("GmailUser")
+            viewModel.updateIsFromGmail(true)
 
         } catch (e: ApiException) {
+            viewModel.updateIsFromGmail(true)
             Log.d("TAG", e.message.toString())
         }
     }

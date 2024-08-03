@@ -7,10 +7,15 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.alparslanturk.bulbiletini.R
+import com.alparslanturk.bulbiletini.application.Constants.ADMIN_PASS
+import com.alparslanturk.bulbiletini.application.Constants.ADMIN_USER
 import com.alparslanturk.bulbiletini.application.SessionManager.getPassword
 import com.alparslanturk.bulbiletini.application.SessionManager.getUserName
+import com.alparslanturk.bulbiletini.application.SessionManager.updateRefreshToken
+import com.alparslanturk.bulbiletini.application.SessionManager.updateToken
 import com.alparslanturk.bulbiletini.data.entities.models.Result
 import com.alparslanturk.bulbiletini.databinding.ActivitySplashBinding
+import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
 import com.alparslanturk.bulbiletini.ui.base.BaseActivity
 import com.alparslanturk.bulbiletini.ui.login.LoginActivity
 import com.alparslanturk.bulbiletini.ui.main.MainActivity
@@ -31,12 +36,36 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
 
         setupObservers()
-        viewModel.getProjectSettings()
+        viewModel.signIn(LoginRequest(ADMIN_USER, ADMIN_PASS), true)
     }
 
     private fun setupObservers() {
         lifecycleScope.launch {
             viewModel.apply {
+                launch {
+                    loginFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+
+                            is Result.Success -> {
+                                it.body?.apply {
+                                    if (code == 200) {
+                                        data.apply {
+                                            updateToken(token.accessToken)
+                                            updateRefreshToken(token.refreshToken)
+                                            if (viewModel.getIsFromAdmin()) viewModel.getProjectSettings() else startActivity(MainActivity.createIntent(this@SplashActivity))
+                                        }
+                                    } else {
+                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 launch {
                     projectSettingFlow.collect {
                         when (it) {
@@ -48,7 +77,7 @@ class SplashActivity : BaseActivity() {
                                         if (getUserName() == "" && getPassword() == "") {
                                             startActivity(LoginActivity.createIntent(this@SplashActivity))
                                         } else {
-                                            startActivity(MainActivity.createIntent(this@SplashActivity))
+                                            viewModel.signIn(LoginRequest(getUserName(), getPassword()))
                                         }
                                     } else {
                                         showAlertDialogTheme(title = getString(R.string.new_version_title), contentMessage = getString(R.string.new_version_available), positiveButtonTitle = getString(R.string.download), onPositiveButtonClick = {
