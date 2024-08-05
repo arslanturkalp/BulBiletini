@@ -33,7 +33,6 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-//5c35af2a-ddad-4491-4b0b-08dc366038ae
 @AndroidEntryPoint
 class FavouritesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -111,8 +110,23 @@ class FavouritesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
                                         it.body.data.apply {
                                             teamsAdapter.updateAdapter(clubList.orEmpty())
                                             ticketsAdapter.updateAdapter(ticketList.orEmpty())
-                                            if (clubList?.isEmpty() == true) binding.tvNotFavouriteTeam.setVisible() else binding.tvNotFavouriteTeam.setGone()
-                                            if (ticketList?.isEmpty() == true) binding.tvNotFavouriteTicket.setVisible() else binding.tvNotFavouriteTicket.setGone()
+                                            with(binding) {
+                                                if (clubList?.isEmpty() == true) {
+                                                    tvNotFavouriteTeam.setVisible()
+                                                    rvTeams.setGone()
+                                                } else {
+                                                    tvNotFavouriteTeam.setGone()
+                                                    rvTeams.setVisible()
+                                                }
+                                                if (ticketList?.isEmpty() == true) {
+                                                    tvNotFavouriteTicket.setVisible()
+                                                    rvTickets.setGone()
+                                                } else {
+                                                    tvNotFavouriteTicket.setGone()
+                                                    rvTickets.setVisible()
+                                                }
+                                            }
+
                                         }
                                     } else {
                                         showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)

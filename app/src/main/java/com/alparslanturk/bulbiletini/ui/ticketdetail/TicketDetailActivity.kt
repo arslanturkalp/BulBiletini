@@ -99,13 +99,7 @@ class TicketDetailActivity : BaseActivity() {
                 }
             }
 
-            ivShare.setOnClickListener {
-                ShareCompat.IntentBuilder(this@TicketDetailActivity)
-                    .setType("text/plain")
-                    .setChooserTitle(getString(R.string.share_ticket))
-                    .setText("http://www.bulbiletini.com/ticketID=${ticket.ticketId}")
-                    .startChooser()
-            }
+            ivShare.setOnClickListener { viewModel.getProjectSettings() }
 
             flMessage.setOnClickListener { navigateToChat() }
             flCall.setOnClickListener { startActivity(Intent(Intent.ACTION_DIAL).also { it.data = Uri.parse("tel:+90" + ticket.user.phoneNumber) }) }
@@ -180,6 +174,28 @@ class TicketDetailActivity : BaseActivity() {
                                 it.body?.apply {
                                     if (code == 200) {
                                         isBlockedUser = data.blockedUserList.any { blockedUser -> blockedUser.id == ticket.user.id }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                launch {
+                    projectSettingFlow.collect {
+                        when (it) {
+                            is Result.Error -> showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                it.body!!.apply {
+                                    if (data.settingValue == "true") {
+                                        ShareCompat.IntentBuilder(this@TicketDetailActivity)
+                                            .setType("text/plain")
+                                            .setChooserTitle(getString(R.string.share_ticket))
+                                            .setText("http://www.bulbiletini.com/ticketID=${ticket.ticketId}")
+                                            .startChooser()
+                                    } else {
+                                        showAlertDialogTheme(getString(R.string.warning), getString(R.string.this_feature_next_version))
                                     }
                                 }
                             }

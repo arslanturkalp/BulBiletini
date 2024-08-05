@@ -11,6 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.alparslanturk.bulbiletini.R
+import com.alparslanturk.bulbiletini.application.Constants.ADMIN_PASS
+import com.alparslanturk.bulbiletini.application.Constants.ADMIN_USER
 import com.alparslanturk.bulbiletini.application.SessionManager.getPassword
 import com.alparslanturk.bulbiletini.application.SessionManager.getUserName
 import com.alparslanturk.bulbiletini.application.SessionManager.updateMail
@@ -62,10 +64,13 @@ class LoginActivity : BaseActivity() {
         binding.apply {
             btnLogin.setOnClickListener { viewModel.signIn(LoginRequest(edtUserName.text.toString(), edtPassword.text.toString())) }
             btnRegister.setOnClickListener { navigateToRegister() }
-            btnGoogle.setOnClickListener { createNewGoogleUser() }
+            btnGoogle.setOnClickListener { viewModel.signInAdmin(LoginRequest(ADMIN_USER, ADMIN_PASS)) }
             tvForgotMyPassword.apply {
                 setTextUnderLine()
-                setOnClickListener { navigateToGetVerificationCode() }
+                setOnClickListener {
+                    updateUserName(edtUserName.text.toString())
+                    navigateToGetVerificationCode()
+                }
             }
         }
     }
@@ -92,6 +97,31 @@ class LoginActivity : BaseActivity() {
                                             updateToken(token.accessToken)
                                             updateRefreshToken(token.refreshToken)
                                             navigateToMain()
+                                        }
+                                    } else {
+                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                launch {
+                    loginAdminFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+
+                            is Result.Success -> {
+                                it.body?.apply {
+                                    if (code == 200) {
+                                        data.apply {
+                                            updateToken(token.accessToken)
+                                            updateRefreshToken(token.refreshToken)
+                                            createNewGoogleUser()
                                         }
                                     } else {
                                         showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
@@ -144,18 +174,20 @@ class LoginActivity : BaseActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             val userName = account.email.orEmpty().substringBefore("@").lowercase()
-            viewModel.register(
-                RegisterRequest(
-                    name = account.givenName.orEmpty(),
-                    surname = account.familyName.orEmpty(),
-                    username = userName,
-                    password = "GmailUser",
-                    email = account.email.orEmpty()
+            if (userName != "admin") {
+                viewModel.register(
+                    RegisterRequest(
+                        name = account.givenName.orEmpty(),
+                        surname = account.familyName.orEmpty(),
+                        username = userName,
+                        password = "GmailUser",
+                        email = account.email.orEmpty()
+                    )
                 )
-            )
-            updateUserName(userName)
-            updatePassword("GmailUser")
-            viewModel.updateIsFromGmail(true)
+                updateUserName(userName)
+                updatePassword("GmailUser")
+                viewModel.updateIsFromGmail(true)
+            }
 
         } catch (e: ApiException) {
             viewModel.updateIsFromGmail(true)

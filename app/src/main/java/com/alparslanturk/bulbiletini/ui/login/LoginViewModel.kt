@@ -25,6 +25,9 @@ class LoginViewModel @Inject constructor(
     private val _loginFlow: MutableStateFlow<Result<LoginResponse>> = MutableStateFlow(Result.Loading())
     val loginFlow: StateFlow<Result<LoginResponse>> = _loginFlow
 
+    private val _loginAdminFlow: MutableStateFlow<Result<LoginResponse>> = MutableStateFlow(Result.Loading())
+    val loginAdminFlow: StateFlow<Result<LoginResponse>> = _loginAdminFlow
+
     private var isFromGmail: Boolean = false
     fun getIsFromGmail() = isFromGmail
 
@@ -38,6 +41,16 @@ class LoginViewModel @Inject constructor(
                 is Result.Error -> _loginFlow.emit(it)
                 is Result.Loading -> _loginFlow.emit(it)
                 is Result.Success -> _loginFlow.emit(it)
+            }
+        }
+    }
+
+    fun signInAdmin(loginRequest: LoginRequest) = viewModelScope.launch(Dispatchers.Main) {
+        loginUseCase(loginRequest).collect {
+            when (it) {
+                is Result.Error -> _loginAdminFlow.emit(it)
+                is Result.Loading -> _loginAdminFlow.emit(it)
+                is Result.Success -> _loginAdminFlow.emit(it)
             }
         }
     }

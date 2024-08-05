@@ -123,4 +123,5 @@
     <string name="not_checked_usage_conditions">Kullanıcı sözleşmesini onaylayınız.</string>
     <string name="user_aggreement">Kullanıcı Sözleşmesi</string>
     <string name="must_read_user_agreement">Kullanıcı sözleşmesini okuyunuz.</string>
+    <string name="this_feature_next_version">Bu özellik yakında kullanımda olacaktır.</string>
 </resources>

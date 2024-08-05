@@ -52,9 +52,9 @@
                 android:id="@+id/tvNotFavouriteTeam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/no_favourite_teams"
-                android:textAlignment="center"
                 android:textColor="@color/green"
                 android:textSize="14sp"
                 android:visibility="gone" />
@@ -82,9 +82,9 @@
                 android:id="@+id/tvNotFavouriteTicket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/no_favourite_ticket"
-                android:textAlignment="center"
                 android:textColor="@color/green"
                 android:textSize="14sp"
                 android:visibility="gone" />

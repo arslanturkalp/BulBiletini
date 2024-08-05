@@ -6,9 +6,11 @@ import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.AddFavou
 import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.RemoveFavouriteTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.responses.favourite.AddFavouriteTicketResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.favourite.RemoveFavouriteTicketResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.projectsettings.ProjectSettingsGetWithNameResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.userblacklist.getblockedusers.GetBlockedUsersResponse
 import com.alparslanturk.bulbiletini.domain.usecases.favourite.AddFavouriteTicketUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.favourite.RemoveFavouriteTicketUseCase
+import com.alparslanturk.bulbiletini.domain.usecases.projectsettings.ProjectSettingsGetWithNameUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.user.GetBlockedUsersUseCase
 import com.alparslanturk.bulbiletini.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +23,8 @@ import javax.inject.Inject
 class TicketDetailViewModel @Inject constructor(
     private val addFavouriteTicketUseCase: AddFavouriteTicketUseCase,
     private val removeFavouriteTicketUseCase: RemoveFavouriteTicketUseCase,
-    private val getBlockedUsersUseCase: GetBlockedUsersUseCase
+    private val getBlockedUsersUseCase: GetBlockedUsersUseCase,
+    private val projectSettingUseCase: ProjectSettingsGetWithNameUseCase
     ) : BaseViewModel() {
 
     private val _addFavouriteTicketFlow: MutableStateFlow<Result<AddFavouriteTicketResponse>> = MutableStateFlow(Result.Loading())
@@ -32,6 +35,9 @@ class TicketDetailViewModel @Inject constructor(
 
     private val _getBlockedUsersFlow: MutableStateFlow<Result<GetBlockedUsersResponse>> = MutableStateFlow(Result.Loading())
     val getBlockedUsersFlow: StateFlow<Result<GetBlockedUsersResponse>> = _getBlockedUsersFlow
+
+    private val _projectSettingFlow: MutableStateFlow<Result<ProjectSettingsGetWithNameResponse>> = MutableStateFlow(Result.Loading())
+    val projectSettingFlow: StateFlow<Result<ProjectSettingsGetWithNameResponse>> = _projectSettingFlow
 
     fun addFavouriteTicket(addFavouriteTicketRequest: AddFavouriteTicketRequest) = viewModelScope.launch {
         addFavouriteTicketUseCase(addFavouriteTicketRequest).collect {
@@ -59,6 +65,16 @@ class TicketDetailViewModel @Inject constructor(
                 is Result.Error -> _getBlockedUsersFlow.emit(it)
                 is Result.Loading -> _getBlockedUsersFlow.emit(it)
                 is Result.Success -> _getBlockedUsersFlow.emit(it)
+            }
+        }
+    }
+
+    fun getProjectSettings() = viewModelScope.launch {
+        projectSettingUseCase("ShareFeature").collect {
+            when (it) {
+                is Result.Error -> _projectSettingFlow.emit(it)
+                is Result.Loading -> _projectSettingFlow.emit(it)
+                is Result.Success -> _projectSettingFlow.emit(it)
             }
         }
     }

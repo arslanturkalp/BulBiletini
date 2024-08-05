@@ -106,7 +106,7 @@ interface ApiService {
     suspend fun removeFavouriteTicket(@Body removeFavouriteTicketRequest: RemoveFavouriteTicketRequest): Response<RemoveFavouriteTicketResponse>
 
     @GET("api/Favourite/GetFavourites")
-    suspend fun getFavourites(@Query("userID") userID: String): Response<ClubGetListWithTicketsResponse>
+    suspend fun getFavourites(@Query("userId") userID: String): Response<ClubGetListWithTicketsResponse>
 
     //Ticket Services
     @POST("/api/Ticket/TicketCreate")

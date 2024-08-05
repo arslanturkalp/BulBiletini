@@ -16,8 +16,8 @@ android {
         applicationId = "com.alparslanturk.biletdevret"
         minSdk = 26
         targetSdk = 34
-        versionCode = 6
-        versionName = "1.0.0"
+        versionCode = 9
+        versionName = "1.0.2"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -69,10 +69,10 @@ dependencies {
 
     //Lifecycle
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("androidx.fragment:fragment-ktx:1.8.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    implementation("androidx.activity:activity-ktx:1.9.1")
+    implementation("androidx.fragment:fragment-ktx:1.8.2")
     implementation("androidx.core:core-ktx:1.13.1")
 
     //Hilt

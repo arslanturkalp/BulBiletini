@@ -11,8 +11,10 @@ import com.alparslanturk.bulbiletini.application.Constants.ADMIN_PASS
 import com.alparslanturk.bulbiletini.application.Constants.ADMIN_USER
 import com.alparslanturk.bulbiletini.application.SessionManager.getPassword
 import com.alparslanturk.bulbiletini.application.SessionManager.getUserName
+import com.alparslanturk.bulbiletini.application.SessionManager.updatePassword
 import com.alparslanturk.bulbiletini.application.SessionManager.updateRefreshToken
 import com.alparslanturk.bulbiletini.application.SessionManager.updateToken
+import com.alparslanturk.bulbiletini.application.SessionManager.updateUserName
 import com.alparslanturk.bulbiletini.data.entities.models.Result
 import com.alparslanturk.bulbiletini.databinding.ActivitySplashBinding
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
@@ -59,7 +61,11 @@ class SplashActivity : BaseActivity() {
                                             if (viewModel.getIsFromAdmin()) viewModel.getProjectSettings() else startActivity(MainActivity.createIntent(this@SplashActivity))
                                         }
                                     } else {
-                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
+                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = message, onPositiveButtonClick = {
+                                            updateUserName("")
+                                            updatePassword("")
+                                            startActivity(LoginActivity.createIntent(this@SplashActivity))
+                                        })
                                     }
                                 }
                             }
