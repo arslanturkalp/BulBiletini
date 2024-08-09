@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alparslanturk.bulbiletini.R
-import com.alparslanturk.bulbiletini.application.SessionManager.getUserName
 import com.alparslanturk.bulbiletini.data.entities.enums.DateFormatType
 import com.alparslanturk.bulbiletini.data.entities.models.Comment
 import com.alparslanturk.bulbiletini.databinding.RowLayoutCommentBinding
@@ -47,7 +46,7 @@ class CommentsAdapter(private val onItemClick: (Comment) -> Unit) : RecyclerView
                         setVisible()
                     }
                     ivCommentDot.setGone()
-                    tvCommentOwner.text = getUserName()
+                    tvCommentOwner.text = item.ownerUser.username
                     tvCommentDate.text = item.createdDate.toDate(dateFormatType = DateFormatType.DATE_TIME)?.toString(dateFormatType = DateFormatType.DATE_TIME_WITH_DOT)
                 } else {
                     ivProfile.setGone()
