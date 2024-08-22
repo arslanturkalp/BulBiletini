@@ -28,6 +28,12 @@ class LoginViewModel @Inject constructor(
     private val _loginAdminFlow: MutableStateFlow<Result<LoginResponse>> = MutableStateFlow(Result.Loading())
     val loginAdminFlow: StateFlow<Result<LoginResponse>> = _loginAdminFlow
 
+    private val _loginAdminForRegisterFlow: MutableStateFlow<Result<LoginResponse>> = MutableStateFlow(Result.Loading())
+    val loginAdminForRegisterFlow: StateFlow<Result<LoginResponse>> = _loginAdminForRegisterFlow
+
+    private val _registerFlow: MutableStateFlow<Result<RegisterResponse>> = MutableStateFlow(Result.Loading())
+    val registerFlow: StateFlow<Result<RegisterResponse>> = _registerFlow
+
     private var isFromGmail: Boolean = false
     fun getIsFromGmail() = isFromGmail
 
@@ -55,8 +61,15 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private val _registerFlow: MutableStateFlow<Result<RegisterResponse>> = MutableStateFlow(Result.Loading())
-    val registerFlow: StateFlow<Result<RegisterResponse>> = _registerFlow
+    fun signInAdminForRegister(loginRequest: LoginRequest) = viewModelScope.launch(Dispatchers.Main) {
+        loginUseCase(loginRequest).collect {
+            when (it) {
+                is Result.Error -> _loginAdminForRegisterFlow.emit(it)
+                is Result.Loading -> _loginAdminForRegisterFlow.emit(it)
+                is Result.Success -> _loginAdminForRegisterFlow.emit(it)
+            }
+        }
+    }
 
     fun register(registerRequest: RegisterRequest) = viewModelScope.launch {
         registerUseCase(registerRequest).collect {

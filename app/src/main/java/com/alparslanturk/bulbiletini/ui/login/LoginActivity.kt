@@ -63,7 +63,7 @@ class LoginActivity : BaseActivity() {
 
         binding.apply {
             btnLogin.setOnClickListener { viewModel.signIn(LoginRequest(edtUserName.text.toString(), edtPassword.text.toString())) }
-            btnRegister.setOnClickListener { navigateToRegister() }
+            btnRegister.setOnClickListener { viewModel.signInAdminForRegister(LoginRequest(ADMIN_USER, ADMIN_PASS)) }
             btnGoogle.setOnClickListener { viewModel.signInAdmin(LoginRequest(ADMIN_USER, ADMIN_PASS)) }
             tvForgotMyPassword.apply {
                 setTextUnderLine()
@@ -85,7 +85,6 @@ class LoginActivity : BaseActivity() {
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
                             is Result.Loading -> {}
-
                             is Result.Success -> {
                                 it.body?.apply {
                                     if (code == 200) {
@@ -114,7 +113,6 @@ class LoginActivity : BaseActivity() {
                                 showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             }
                             is Result.Loading -> {}
-
                             is Result.Success -> {
                                 it.body?.apply {
                                     if (code == 200) {
@@ -131,6 +129,32 @@ class LoginActivity : BaseActivity() {
                         }
                     }
                 }
+
+                launch {
+                    loginAdminForRegisterFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                it.body?.apply {
+                                    if (code == 200) {
+                                        data.apply {
+                                            updateToken(token.accessToken)
+                                            updateRefreshToken(token.refreshToken)
+                                        }
+                                        navigateToRegister()
+                                    } else {
+                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = message)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 launch {
                     registerFlow.collect {
                         when (it) {

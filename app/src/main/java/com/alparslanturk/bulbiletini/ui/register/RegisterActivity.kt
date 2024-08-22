@@ -32,6 +32,7 @@ class RegisterActivity : BaseActivity() {
         setupToolbar()
         setupObservers()
         setupUI()
+
     }
 
     private fun setupToolbar() {
