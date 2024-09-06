@@ -53,6 +53,11 @@ class ForgotPasswordActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Forgot Password Page", ForgotPasswordActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.change_password))

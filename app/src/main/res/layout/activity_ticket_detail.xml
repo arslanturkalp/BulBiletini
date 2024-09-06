@@ -55,6 +55,7 @@
                     android:fontFamily="@font/gotham_narrow_bold"
                     android:textAlignment="center"
                     android:textAllCaps="true"
+                    android:minLines="2"
                     android:textColor="@color/white"
                     tools:text="Galatasaray" />
 
@@ -123,9 +124,10 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/gotham_narrow_bold"
                     android:textAlignment="center"
+                    android:minLines="2"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    tools:text="Kopenhag" />
+                    tools:text="Çaykur Rizespor" />
 
             </LinearLayout>
 

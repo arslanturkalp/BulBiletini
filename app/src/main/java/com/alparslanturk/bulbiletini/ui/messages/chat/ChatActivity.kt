@@ -60,6 +60,11 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.retrieveMessages(user.id)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Chat Page", ChatActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         addOnBackPressedListener { onBackClicked() }
         binding.toolbar.apply {

@@ -53,6 +53,11 @@ class UpdateUserInfoActivity : BaseActivity() {
         viewModel.getUserDetail(getUserID())
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Update User Info Page", UpdateUserInfoActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         addOnBackPressedListener { onBackClicked() }
         binding.toolbar.apply {

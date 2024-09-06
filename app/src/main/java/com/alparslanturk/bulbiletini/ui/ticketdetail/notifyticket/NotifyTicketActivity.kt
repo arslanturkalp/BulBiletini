@@ -46,6 +46,11 @@ class NotifyTicketActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Notify Ticket Page", NotifyTicketActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.notify_advert))

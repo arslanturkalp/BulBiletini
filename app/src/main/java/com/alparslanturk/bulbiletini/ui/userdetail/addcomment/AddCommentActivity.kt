@@ -47,6 +47,11 @@ class AddCommentActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Add Comment Page", AddCommentActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.add_comment))

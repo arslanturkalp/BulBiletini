@@ -32,6 +32,11 @@ class TeamsActivity : BaseActivity() {
         setupTeamsList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Teams Page", TeamsActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.teams))

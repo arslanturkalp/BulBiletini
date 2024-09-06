@@ -61,6 +61,11 @@ class MessagesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.getUserMessages(getUserID())
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Messages Page", MessagesFragment::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.messages))

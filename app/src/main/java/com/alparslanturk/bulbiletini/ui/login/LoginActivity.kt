@@ -75,6 +75,11 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Login Page", LoginActivity::class.java.name)
+    }
+
     private fun setupObservers() {
         lifecycleScope.launch {
             viewModel.apply {

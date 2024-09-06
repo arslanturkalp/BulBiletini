@@ -72,6 +72,11 @@ class SettingsFragment : BaseFragment() {
             })
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Settings Page", SettingsFragment::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.settings))

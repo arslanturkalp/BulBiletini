@@ -39,6 +39,11 @@ class MyTariffsActivity : BaseActivity() {
         binding.btnBuyTariff.setOnClickListener { navigateToBuyTicket() }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("My Tariffs Page", MyTariffsActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.my_tariffs))

@@ -64,6 +64,11 @@ class TicketDetailActivity : BaseActivity() {
         viewModel.getBlockedUsers(getUserID())
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Ticket Detail Page ${ticket.homeTeamName}", TicketDetailActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.ticket_detail))

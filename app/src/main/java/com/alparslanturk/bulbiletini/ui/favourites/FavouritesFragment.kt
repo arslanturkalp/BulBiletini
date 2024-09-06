@@ -68,6 +68,11 @@ class FavouritesFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener 
             })
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Favourites Page", FavouritesFragment::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.favourites))

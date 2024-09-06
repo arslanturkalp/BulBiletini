@@ -42,6 +42,11 @@ class CreateTicketActivity : BaseActivity(), DialogCloseListener {
         setupUI()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Create Ticket Page", CreateTicketActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.create_ticket))

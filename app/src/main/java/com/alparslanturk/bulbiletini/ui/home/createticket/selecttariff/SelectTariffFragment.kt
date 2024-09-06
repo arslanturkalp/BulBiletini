@@ -51,6 +51,11 @@ class SelectTariffFragment : BaseBottomSheetDialogFragment() {
         viewModel.requestGetMyTariffs(getUserID())
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Select Tariff Page", SelectTariffFragment::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.select_tariff))

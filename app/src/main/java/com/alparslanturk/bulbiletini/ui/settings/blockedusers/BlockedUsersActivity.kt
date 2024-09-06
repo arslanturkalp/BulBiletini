@@ -38,6 +38,11 @@ class BlockedUsersActivity : BaseActivity() {
         viewModel.getBlockedUsers(getUserID())
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Blocked Users Page", BlockedUsersActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.blocked_users))

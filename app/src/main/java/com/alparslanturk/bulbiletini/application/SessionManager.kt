@@ -6,6 +6,7 @@ object SessionManager {
 
     private const val KEY_UNKNOWN_ANSWER = "KEY_UNKNOWN_ANSWER"
     private const val KEY_UNKNOWN_IMAGE = "KEY_UNKNOWN_IMAGE"
+    private const val KEY_HAWK_DEVICE_ID = "KEY_HAWK_DEVICE_ID"
     private const val KEY_IS_SHOWED_FLAG = "KEY_IS_SHOWED_FLAG"
     private const val KEY_IS_SHOWED_NUMBER = "KEY_IS_SHOWED_NUMBER"
     private const val KEY_IS_SHOWED_TUTORIAL = "KEY_IS_SHOWED_TUTORIAL"
@@ -25,6 +26,7 @@ object SessionManager {
     private const val KEY_PASSWORD = "KEY_PASSWORD"
     private const val KEY_MAIL = "KEY_MAIL"
 
+    private var deviceId: String = ""
     private var unknownAnswer: String = ""
     private var unknownImage: String = ""
     private var token: String = ""
@@ -49,6 +51,7 @@ object SessionManager {
     init {
         unknownAnswer = Hawk.get(KEY_UNKNOWN_ANSWER, "")
         unknownImage = Hawk.get(KEY_UNKNOWN_IMAGE, "")
+        deviceId = Hawk.get(KEY_HAWK_DEVICE_ID, "")
         token = Hawk.get(KEY_TOKEN, "")
         refreshToken = Hawk.get(KEY_REFRESH_TOKEN, "")
         userID = Hawk.get(KEY_USER_ID, "")
@@ -254,5 +257,13 @@ object SessionManager {
     fun clearIsSoundOpen() {
         updateIsSoundOpen(true)
     }
+
+    fun updateDeviceId(value: String) {
+        Hawk.put(KEY_HAWK_DEVICE_ID, value)
+        deviceId = value
+    }
+
+    fun getDeviceId() = deviceId
+
 
 }

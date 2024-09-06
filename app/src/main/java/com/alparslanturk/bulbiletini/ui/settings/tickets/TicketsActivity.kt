@@ -47,6 +47,11 @@ class TicketsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.getTickets(userId)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Tickets Page", TicketsActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         val isDifferentUser = intent.extras?.getBoolean(EXTRAS_DIFFERENT_USER, false)
         binding.toolbar.apply {

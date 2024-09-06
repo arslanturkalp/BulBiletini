@@ -38,6 +38,11 @@ class UserCommentsActivity : BaseActivity() {
         viewModel.getComments(userID)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("User Comments Page", UserCommentsActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.user_comments))

@@ -69,6 +69,11 @@ class TeamDetailActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener 
         viewModel.getClubDetail(ClubGetDetailWithClubIdRequest(team.id, getUserID()))
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Team Detail Page", TeamDetailActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         with(binding.toolbar) {
             setBackButton { onBackPressedDispatcher.onBackPressed() }

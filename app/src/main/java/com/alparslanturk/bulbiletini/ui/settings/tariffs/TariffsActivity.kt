@@ -74,6 +74,11 @@ class TariffsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.getTariffList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Tariffs Page", TariffsActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         addOnBackPressedListener { onBackClicked() }
         binding.toolbar.apply {

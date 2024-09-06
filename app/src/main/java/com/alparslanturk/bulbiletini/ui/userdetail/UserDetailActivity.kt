@@ -54,6 +54,11 @@ class UserDetailActivity : BaseActivity() {
         viewModel.getComments(user.id)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("User Detail Page", UserDetailActivity::class.java.name)
+    }
+
     @SuppressLint("SetTextI18n")
     private fun setupUI() {
         with(binding) {

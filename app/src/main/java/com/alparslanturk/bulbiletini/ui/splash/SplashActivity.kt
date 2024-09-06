@@ -41,6 +41,11 @@ class SplashActivity : BaseActivity() {
         viewModel.signIn(LoginRequest(ADMIN_USER, ADMIN_PASS), true)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Splash Page", SplashActivity::class.java.name)
+    }
+
     private fun setupObservers() {
         lifecycleScope.launch {
             viewModel.apply {

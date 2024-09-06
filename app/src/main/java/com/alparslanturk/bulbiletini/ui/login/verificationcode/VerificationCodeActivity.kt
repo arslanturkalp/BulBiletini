@@ -43,6 +43,11 @@ class VerificationCodeActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Verification Code Page", VerificationCodeActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.get_verification_code))

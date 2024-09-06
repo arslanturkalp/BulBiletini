@@ -35,6 +35,11 @@ class RegisterActivity : BaseActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Register Page", RegisterActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.register))

@@ -43,6 +43,12 @@ class MatchDetailActivity : BaseActivity() {
         viewModel.getMatchTickets(match.id)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Match Detail ${match.homeTeamName} - ${match.awayTeamName} Page", MatchDetailActivity::class.java.name)
+
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle("${match.homeTeamName} - ${match.awayTeamName}")

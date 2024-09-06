@@ -3,6 +3,7 @@ package com.alparslanturk.bulbiletini.ui.base
 import android.app.Dialog
 import android.os.Bundle
 import com.alparslanturk.bulbiletini.ui.generic.GenericProgressDialog
+import com.alparslanturk.bulbiletini.utils.FirebaseUtils
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -12,7 +13,11 @@ open class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     private var progressDialog: GenericProgressDialog? = null
 
+    lateinit var mFirebaseUtils: FirebaseUtils
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        mFirebaseUtils = FirebaseUtils(context)
+
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
         bottomSheetDialog.setOnShowListener {

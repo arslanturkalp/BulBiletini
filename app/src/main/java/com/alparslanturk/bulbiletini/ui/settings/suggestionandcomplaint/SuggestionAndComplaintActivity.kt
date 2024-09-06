@@ -34,6 +34,11 @@ class SuggestionAndComplaintActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Send Suggestion Page", SuggestionAndComplaintActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.send_suggestion_and_complaint))

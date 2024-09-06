@@ -35,6 +35,11 @@ class MyCommentsActivity : BaseActivity() {
         viewModel.getMyComments(getUserID())
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("My Comments Page", MyCommentsActivity::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.comments))

@@ -45,6 +45,11 @@ class SelectMatchFragment : BaseBottomSheetDialogFragment() {
         viewModel.requestGetMatchList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Select Match Page", SelectMatchFragment::class.java.name)
+    }
+
     private fun setupToolbar() {
         binding.toolbar.apply {
             setTitle(getString(R.string.select_match))

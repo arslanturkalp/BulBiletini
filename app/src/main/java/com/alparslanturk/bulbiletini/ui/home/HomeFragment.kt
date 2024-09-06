@@ -85,6 +85,11 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         //viewModel.loginTest()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mFirebaseUtils.logScreenViewEvent("Home", HomeFragment::class.java.name)
+    }
+
     private fun requestToken() {
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener { task ->
