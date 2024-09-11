@@ -53,9 +53,9 @@
                     android:layout_marginTop="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/gotham_narrow_bold"
+                    android:minLines="2"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:minLines="2"
                     android:textColor="@color/white"
                     tools:text="Galatasaray" />
 
@@ -73,8 +73,8 @@
                     android:id="@+id/ivTournament"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    tools:src="@drawable/ic_super_lig"
-                    android:tint="@color/white" />
+                    android:tint="@color/white"
+                    tools:src="@drawable/ic_super_lig" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDate"
@@ -123,8 +123,8 @@
                     android:layout_marginTop="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/gotham_narrow_bold"
-                    android:textAlignment="center"
                     android:minLines="2"
+                    android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     tools:text="Çaykur Rizespor" />
@@ -314,6 +314,7 @@
                     android:layout_height="72dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_rounded"
+                    android:foreground="@drawable/bg_ripple_effect"
                     android:gravity="center">
 
                     <androidx.appcompat.widget.AppCompatImageView

@@ -16,8 +16,8 @@ android {
         applicationId = "com.alparslanturk.biletdevret"
         minSdk = 26
         targetSdk = 34
-        versionCode = 10
-        versionName = "1.0.3"
+        versionCode = 12
+        versionName = "1.0.4"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -69,15 +69,15 @@ dependencies {
 
     //Lifecycle
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
-    implementation("androidx.activity:activity-ktx:1.9.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
+    implementation("androidx.activity:activity-ktx:1.9.2")
+    implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation("androidx.core:core-ktx:1.13.1")
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("com.google.dagger:hilt-android:2.52")
+    kapt("com.google.dagger:hilt-compiler:2.52")
 
     //EventBus
     implementation("org.greenrobot:eventbus:3.3.1")
@@ -93,4 +93,7 @@ dependencies {
 
     //Google Auth
     implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+    //PhotoView
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 }

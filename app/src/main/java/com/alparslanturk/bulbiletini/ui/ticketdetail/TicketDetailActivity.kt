@@ -19,6 +19,7 @@ import com.alparslanturk.bulbiletini.databinding.ActivityTicketDetailBinding
 import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.AddFavouriteTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.RemoveFavouriteTicketRequest
 import com.alparslanturk.bulbiletini.ui.base.BaseActivity
+import com.alparslanturk.bulbiletini.ui.generic.GenericImageDetailActivity
 import com.alparslanturk.bulbiletini.ui.messages.chat.ChatActivity
 import com.alparslanturk.bulbiletini.ui.ticketdetail.notifyticket.NotifyTicketActivity
 import com.alparslanturk.bulbiletini.ui.userdetail.UserDetailActivity
@@ -111,6 +112,7 @@ class TicketDetailActivity : BaseActivity() {
             llTicketUser.setOnClickListener { navigateToUserDetail() }
             llLocation.setOnClickListener { openLocationOnMap(ticket.location) }
             llNotify.setOnClickListener { navigateToNotifyTicket(ticket.ticketId) }
+            llStadium.setOnClickListener { navigateToStadiumPlan("http://www.bulbiletini.com${ticket.homeTeamStadiumPlan}") }
         }
     }
 
@@ -226,6 +228,8 @@ class TicketDetailActivity : BaseActivity() {
     }
 
     private fun navigateToNotifyTicket(ticketId: String) = startActivity(NotifyTicketActivity.createIntent(this, ticketId))
+
+    private fun navigateToStadiumPlan(photoUrl: String) = startActivity(GenericImageDetailActivity.createIntent(this, photoUrl, ticket.homeTeamStadium))
 
     companion object {
 
