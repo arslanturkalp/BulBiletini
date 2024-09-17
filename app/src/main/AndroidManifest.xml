@@ -140,6 +140,9 @@
             android:name=".ui.ticketdetail.notifyticket.NotifyTicketActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.ticketdetail.editticket.EditTicketActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.settings.suggestionandcomplaint.SuggestionAndComplaintActivity"
             android:screenOrientation="portrait" />
         <activity

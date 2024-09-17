@@ -81,8 +81,6 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         setupUI()
         requestToken()
         checkPermissions()
-
-        //viewModel.loginTest()
     }
 
     override fun onResume() {

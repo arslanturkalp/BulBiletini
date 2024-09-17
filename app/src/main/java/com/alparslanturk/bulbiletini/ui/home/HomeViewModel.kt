@@ -9,9 +9,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.club.clubgetlistw
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.login.LoginResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.updatenotificationtoken.UpdateNotificationTokenResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.usermessage.GetUserMessagesResponse
-import com.alparslanturk.bulbiletini.domain.usecases.LoginTestUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.club.ClubGetListWithTicketsUseCase
-import com.alparslanturk.bulbiletini.domain.usecases.projectsettings.ProjectSettingsGetWithNameUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.user.LoginUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.user.UpdateNotificationTokenUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.usermessage.GetUserMessagesUseCase
@@ -28,7 +26,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val clubGetListWithTicketsUseCase: ClubGetListWithTicketsUseCase,
     private val getUserMessagesUseCase: GetUserMessagesUseCase,
-    private val loginTestUseCase: LoginTestUseCase,
     private val loginUseCase: LoginUseCase,
     private val updateNotificationTokenUseCase: UpdateNotificationTokenUseCase
 ) : BaseViewModel() {
@@ -64,16 +61,6 @@ class HomeViewModel @Inject constructor(
                 is Result.Error -> _getUserMessagesFlow.emit(it)
                 is Result.Loading -> _getUserMessagesFlow.emit(it)
                 is Result.Success -> _getUserMessagesFlow.emit(it)
-            }
-        }
-    }
-
-    fun loginTest() = viewModelScope.launch {
-        loginTestUseCase().collect {
-            when (it) {
-                is Result.Error -> _loginTestFlow.emit(it)
-                is Result.Loading -> _loginTestFlow.emit(it)
-                is Result.Success -> _loginTestFlow.emit(it)
             }
         }
     }

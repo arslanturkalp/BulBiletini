@@ -9,6 +9,7 @@ import com.alparslanturk.bulbiletini.domain.entities.requests.suggestionandcompl
 import com.alparslanturk.bulbiletini.domain.entities.requests.tariff.PurchaseTariffRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.CreateTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.NotifyTicketRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.UpdateTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.ForgotPasswordRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.RegisterRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.UpdateUserInfoRequest
@@ -33,6 +34,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTa
 import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.CreateTicketResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.GetTicketsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.NotifyTicketResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.UpdateTicketResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.blockuser.BlockUserResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.deleteuser.UserDeleteResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.forgotpassword.ForgotPasswordResponse
@@ -119,6 +121,9 @@ interface ApiService {
 
     @POST("/api/Ticket/TicketNotify")
     suspend fun notifyTicket(@Body notifyTicketRequest: NotifyTicketRequest): Response<NotifyTicketResponse>
+
+    @POST("/api/Ticket/TicketUpdate")
+    suspend fun updateTicket(@Body updateTicketRequest: UpdateTicketRequest): Response<UpdateTicketResponse>
 
     //ProfileCommentServices
     @GET("/api/ProfileComment/ProfileCommentGetListWithUserId")

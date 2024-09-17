@@ -1,17 +1,20 @@
 package com.alparslanturk.bulbiletini.ui.ticketdetail
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.lifecycleScope
 import com.alparslanturk.bulbiletini.R
 import com.alparslanturk.bulbiletini.application.Constants.BASE_URL
 import com.alparslanturk.bulbiletini.application.SessionManager.getUserID
+import com.alparslanturk.bulbiletini.application.SessionManager.getUserName
 import com.alparslanturk.bulbiletini.data.entities.enums.DateFormatType
 import com.alparslanturk.bulbiletini.data.entities.models.Result
 import com.alparslanturk.bulbiletini.data.entities.models.Ticket
@@ -21,10 +24,13 @@ import com.alparslanturk.bulbiletini.domain.entities.requests.favourite.RemoveFa
 import com.alparslanturk.bulbiletini.ui.base.BaseActivity
 import com.alparslanturk.bulbiletini.ui.generic.GenericImageDetailActivity
 import com.alparslanturk.bulbiletini.ui.messages.chat.ChatActivity
+import com.alparslanturk.bulbiletini.ui.ticketdetail.editticket.EditTicketActivity
 import com.alparslanturk.bulbiletini.ui.ticketdetail.notifyticket.NotifyTicketActivity
 import com.alparslanturk.bulbiletini.ui.userdetail.UserDetailActivity
 import com.alparslanturk.bulbiletini.utils.addOnBackPressedListener
 import com.alparslanturk.bulbiletini.utils.getDataExtra
+import com.alparslanturk.bulbiletini.utils.setGone
+import com.alparslanturk.bulbiletini.utils.setVisible
 import com.alparslanturk.bulbiletini.utils.showAlertDialogTheme
 import com.alparslanturk.bulbiletini.utils.toDate
 import com.alparslanturk.bulbiletini.utils.toString
@@ -81,6 +87,12 @@ class TicketDetailActivity : BaseActivity() {
     private fun setupTicket() {
         val matchDate = ticket.matchDate.toDate(dateFormatType = DateFormatType.DATE_TIME)?.toString(dateFormatType = DateFormatType.DATE_WITH_DOT)
         with(binding) {
+
+            llEditTicket.apply {
+                if (ticket.user.username == getUserName()) setVisible() else setGone()
+                setOnClickListener { editTicketResult.launch(EditTicketActivity.createIntent(this@TicketDetailActivity, ticket)) }
+            }
+
             ivHomeLogo.apply { Glide.with(context).load("${BASE_URL}${ticket.homeTeamLogo}").into(this) }
             ivAwayLogo.apply { Glide.with(context).load("${BASE_URL}${ticket.awayTeamLogo}").into(this) }
             ivTournament.apply { Glide.with(context).load("${BASE_URL}${ticket.leagueImagePath}").into(this) }
@@ -112,7 +124,7 @@ class TicketDetailActivity : BaseActivity() {
             llTicketUser.setOnClickListener { navigateToUserDetail() }
             llLocation.setOnClickListener { openLocationOnMap(ticket.location) }
             llNotify.setOnClickListener { navigateToNotifyTicket(ticket.ticketId) }
-            llStadium.setOnClickListener { navigateToStadiumPlan("http://www.bulbiletini.com${ticket.homeTeamStadiumPlan}") }
+            llStadium.setOnClickListener { navigateToStadiumPlan("https://www.bulbiletini.com${ticket.homeTeamStadiumPlan}") }
         }
     }
 
@@ -194,15 +206,19 @@ class TicketDetailActivity : BaseActivity() {
                             is Result.Error -> showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
                             is Result.Loading -> {}
                             is Result.Success -> {
-                                it.body!!.apply {
-                                    if (data.settingValue == "true") {
-                                        ShareCompat.IntentBuilder(this@TicketDetailActivity)
-                                            .setType("text/plain")
-                                            .setChooserTitle(getString(R.string.share_ticket))
-                                            .setText("http://www.bulbiletini.com/ticketID=${ticket.ticketId}")
-                                            .startChooser()
+                                it.body?.apply {
+                                    if (it.body.code == 300) {
+                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
                                     } else {
-                                        showAlertDialogTheme(getString(R.string.warning), getString(R.string.this_feature_next_version))
+                                        if (data.settingValue == "true") {
+                                            ShareCompat.IntentBuilder(this@TicketDetailActivity)
+                                                .setType("text/plain")
+                                                .setChooserTitle(getString(R.string.share_ticket))
+                                                .setText("https://www.bulbiletini.com/ticketID=${ticket.ticketId}")
+                                                .startChooser()
+                                        } else {
+                                            showAlertDialogTheme(getString(R.string.warning), getString(R.string.this_feature_next_version))
+                                        }
                                     }
                                 }
                             }
@@ -230,6 +246,13 @@ class TicketDetailActivity : BaseActivity() {
     private fun navigateToNotifyTicket(ticketId: String) = startActivity(NotifyTicketActivity.createIntent(this, ticketId))
 
     private fun navigateToStadiumPlan(photoUrl: String) = startActivity(GenericImageDetailActivity.createIntent(this, photoUrl, ticket.homeTeamStadium))
+
+    private val editTicketResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        when (result.resultCode) {
+            Activity.RESULT_OK -> returnResult()
+        }
+    }
+
 
     companion object {
 

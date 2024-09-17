@@ -124,4 +124,9 @@
     <string name="user_aggreement">Kullanıcı Sözleşmesi</string>
     <string name="must_read_user_agreement">Kullanıcı sözleşmesini okuyunuz.</string>
     <string name="this_feature_next_version">Bu özellik yakında kullanımda olacaktır.</string>
+    <string name="edit_ticket">Bilet Düzenle</string>
+    <string name="edit">Düzenle</string>
+    <string name="please_enter_price">Lütfen fiyat giriniz.</string>
+    <string name="please_enter_description">Lütfen açıklama giriniz.</string>
+    <string name="ticket_edited_successful">Bilet başarıyla düzenlendi.</string>
 </resources>

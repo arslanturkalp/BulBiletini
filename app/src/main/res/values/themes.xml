@@ -46,6 +46,23 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="FormEditText.MultiLine">
+        <item name="android:background">@drawable/bg_rounded</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:colorActivatedHighlight">@color/primary</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:maxLines">10</item>
+        <item name="android:minLines">5</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="FormEditText.Spinner">
         <item name="android:cursorVisible">false</item>
         <item name="android:focusable">false</item>

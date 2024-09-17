@@ -75,7 +75,7 @@ class RegisterActivity : BaseActivity() {
         binding.apply {
             llUsageConditions.setOnClickListener {
                 hasRead = true
-                startActivity(WebViewActivity.createIntent(this@RegisterActivity, getString(R.string.user_aggreement), "http://bulbiletini.com/usage_conditions.html"))
+                startActivity(WebViewActivity.createIntent(this@RegisterActivity, getString(R.string.user_aggreement), "https://bulbiletini.com/usage_conditions.html"))
             }
             btnRegister.setOnClickListener {
                 validateRegister(edtName.text.toString(), edtSurname.text.toString(), edtUserName.text.toString().trim(), edtPassword.text.toString().trim(), edtPasswordAgain.text.toString().trim(), edtMail.text.toString().trim(), cbUsageConditions.isChecked)

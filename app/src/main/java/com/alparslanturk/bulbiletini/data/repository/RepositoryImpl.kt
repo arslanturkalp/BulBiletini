@@ -12,6 +12,7 @@ import com.alparslanturk.bulbiletini.domain.entities.requests.suggestionandcompl
 import com.alparslanturk.bulbiletini.domain.entities.requests.tariff.PurchaseTariffRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.CreateTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.NotifyTicketRequest
+import com.alparslanturk.bulbiletini.domain.entities.requests.ticket.UpdateTicketRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.ForgotPasswordRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.RegisterRequest
@@ -37,6 +38,7 @@ import com.alparslanturk.bulbiletini.domain.entities.responses.tariff.PurchaseTa
 import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.CreateTicketResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.GetTicketsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.NotifyTicketResponse
+import com.alparslanturk.bulbiletini.domain.entities.responses.ticket.UpdateTicketResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.blockuser.BlockUserResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.deleteuser.UserDeleteResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.forgotpassword.ForgotPasswordResponse
@@ -400,6 +402,17 @@ class RepositoryImpl @Inject constructor(private val apiService: ApiService, pri
 
     override suspend fun notifyTicket(notifyTicketRequest: NotifyTicketRequest): Result<NotifyTicketResponse> {
         val response = apiService.notifyTicket(notifyTicketRequest)
+        return try {
+            return if (response.isSuccessful) {
+                Result.Success(response.body(), response.code(), response.message())
+            } else Result.Error(response.code(), response.message())
+        } catch (e: Exception) {
+            Result.Error(response.code(), e.message)
+        }
+    }
+
+    override suspend fun updateTicket(updateTicketRequest: UpdateTicketRequest): Result<UpdateTicketResponse> {
+        val response = apiService.updateTicket(updateTicketRequest)
         return try {
             return if (response.isSuccessful) {
                 Result.Success(response.body(), response.code(), response.message())
