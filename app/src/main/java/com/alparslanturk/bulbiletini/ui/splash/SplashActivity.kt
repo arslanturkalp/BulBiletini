@@ -91,6 +91,28 @@ class SplashActivity : BaseActivity() {
                                             viewModel.signIn(LoginRequest(getUserName(), getPassword()))
                                         }
                                     } else {
+                                        viewModel.isRequiredUpdate()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                launch {
+                    requiredUpdateFlow.collect {
+                        when (it) {
+                            is Result.Error -> showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                it.body!!.apply {
+                                    if (data.settingValue == "false") {
+                                        if (getUserName() == "" && getPassword() == "") {
+                                            startActivity(LoginActivity.createIntent(this@SplashActivity))
+                                        } else {
+                                            viewModel.signIn(LoginRequest(getUserName(), getPassword()))
+                                        }
+                                    } else {
                                         showAlertDialogTheme(title = getString(R.string.new_version_title), contentMessage = getString(R.string.new_version_available), positiveButtonTitle = getString(R.string.download), onPositiveButtonClick = {
                                             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${applicationContext.packageName}")))
                                         })

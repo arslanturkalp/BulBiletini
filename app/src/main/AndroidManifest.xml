@@ -103,15 +103,14 @@
         <activity
             android:name=".ui.home.createticket.CreateTicketActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.settings.tariffs.TariffsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.messages.chat.ChatActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NavigationBarColor"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.settings.mytariffs.MyTariffsActivity"
             android:screenOrientation="portrait" />

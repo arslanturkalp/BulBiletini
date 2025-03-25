@@ -12,6 +12,6 @@ data class Club (
     val logo: String,
     val stadium: String,
     val stadiumPlan: String,
-    val totalTicketCount: Int,
-    val clubIsFavourite: Boolean
+    var totalTicketCount: Int,
+    val clubIsFavourite: Boolean,
 ): Parcelable

@@ -48,4 +48,12 @@ class ApplicationToolbar @JvmOverloads constructor(context: Context, attrs: Attr
             }
         }
     }
+
+    fun setRightButton(resId: Int, onClick: () -> Unit) {
+        binding.ivRight.apply {
+            setVisible()
+            setImageResource(resId)
+            setOnClickListener { onClick.invoke() }
+        }
+    }
 }

@@ -31,6 +31,7 @@ import com.alparslanturk.bulbiletini.data.entities.models.MessageEvent
 import com.alparslanturk.bulbiletini.data.entities.models.Result
 import com.alparslanturk.bulbiletini.data.entities.models.Ticket
 import com.alparslanturk.bulbiletini.databinding.FragmentHomeBinding
+import com.alparslanturk.bulbiletini.domain.entities.requests.club.ClubGetDetailWithClubIdRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.club.ClubGetListWithTicketsRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.UpdateNotificationTokenRequest
@@ -155,7 +156,10 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                                         data.apply {
                                             this@HomeFragment.clubList = ArrayList(clubList.orEmpty())
                                             teamsAdapter.updateAdapter(clubList.orEmpty().sortedByDescending { club -> club.totalTicketCount })
+
                                             ticketsAdapter.updateAdapter(ticketList.orEmpty())
+
+                                            clubList.orEmpty().forEach { club -> viewModel.getClubDetail(ClubGetDetailWithClubIdRequest(club.id, getUserID())) }
 
                                             viewModel.getUserMessages(getUserID())
                                         }
@@ -192,7 +196,9 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 launch(Dispatchers.Main) {
                     loginTestFlow.collect {
                         when (it) {
-                            is Result.Error -> { viewModel.signIn(LoginRequest(getUserName(), getPassword())) }
+                            is Result.Error -> {
+                                viewModel.signIn(LoginRequest(getUserName(), getPassword()))
+                            }
                             is Result.Loading -> {}
                             is Result.Success -> {}
                         }
@@ -224,6 +230,31 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                             is Result.Loading -> {}
                             is Result.Success -> {
                                 dismissProgress()
+                            }
+                        }
+                    }
+                }
+
+                launch(Dispatchers.Main) {
+                    getClubDetailFlow.collect {
+                        when (it) {
+                            is Result.Error -> {
+                                dismissProgress()
+                                showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.message)
+                            }
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                dismissProgress()
+                                it.body?.apply {
+                                    if (code == 200) {
+                                        clubList.find { club -> club.id == data.id }?.apply {
+                                            totalTicketCount = data.matchList.orEmpty().sumOf { match -> match.ticketCount }
+                                            teamsAdapter.updateAdapter(clubList.sortedByDescending { club -> club.totalTicketCount })
+                                        }
+                                    } else {
+                                        showAlertDialogTheme(title = getString(R.string.error), contentMessage = it.body.message)
+                                    }
+                                }
                             }
                         }
                     }

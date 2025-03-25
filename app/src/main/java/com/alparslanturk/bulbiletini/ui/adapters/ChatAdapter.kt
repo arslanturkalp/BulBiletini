@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alparslanturk.bulbiletini.data.entities.enums.ChatMessageType
-import com.alparslanturk.bulbiletini.data.entities.enums.ChatMessageType.RECEIVED
-import com.alparslanturk.bulbiletini.data.entities.enums.ChatMessageType.SENT
+import com.alparslanturk.bulbiletini.data.entities.enums.ChatMessageType.*
 import com.alparslanturk.bulbiletini.data.entities.enums.DateFormatType
 import com.alparslanturk.bulbiletini.data.entities.models.Message
+import com.alparslanturk.bulbiletini.databinding.RowLayoutMessageDateBinding
 import com.alparslanturk.bulbiletini.databinding.RowLayoutReceivedMessageBinding
 import com.alparslanturk.bulbiletini.databinding.RowLayoutSentMessageBinding
 import com.alparslanturk.bulbiletini.utils.toDate
@@ -23,6 +23,7 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return when (ChatMessageType.fromInt(viewType)) {
             RECEIVED -> ReceivedMessageViewHolder(RowLayoutReceivedMessageBinding.inflate(inflater, parent, false))
             SENT -> SentMessageViewHolder(RowLayoutSentMessageBinding.inflate(inflater, parent, false))
+            DATE -> DateViewHolder(RowLayoutMessageDateBinding.inflate(inflater, parent, false))
         }
     }
 
@@ -32,6 +33,7 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
             is ChatAdapter.ReceivedMessageViewHolder -> holder.bind(item)
             is ChatAdapter.SentMessageViewHolder -> holder.bind(item)
+            is ChatAdapter.DateViewHolder -> holder.bind(item)
         }
     }
 
@@ -44,6 +46,14 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         dataList.clear()
         dataList.addAll(list)
         notifyDataSetChanged()
+    }
+
+    inner class DateViewHolder(val binding: RowLayoutMessageDateBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(message: Message) {
+            binding.apply {
+                tvDate.text = message.createdDate.toDate(dateFormatType = DateFormatType.DATE_TIME)?.toString(dateFormatType = DateFormatType.DATE_WITH_DOT)
+            }
+        }
     }
 
     inner class ReceivedMessageViewHolder(val binding: RowLayoutReceivedMessageBinding) : RecyclerView.ViewHolder(binding.root) {

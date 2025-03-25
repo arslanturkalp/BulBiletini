@@ -3,7 +3,6 @@
     <style name="Base.Theme.KombineApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorSecondaryContainer">@color/light_green</item>
-        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
     <style name="Theme.KombineApp" parent="Base.Theme.KombineApp" />
@@ -91,10 +90,6 @@
         <item name="colorControlActivated">@color/golden</item>
     </style>
 
-    <style name="NavigationBarColor" parent="Theme.KombineApp">
-        <item name="android:navigationBarColor">@color/bg_color</item>
-    </style>
-
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
@@ -104,5 +99,4 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-
 </resources>

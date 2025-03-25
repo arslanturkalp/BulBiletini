@@ -2,13 +2,16 @@ package com.alparslanturk.bulbiletini.ui.home
 
 import androidx.lifecycle.viewModelScope
 import com.alparslanturk.bulbiletini.data.entities.models.Result
+import com.alparslanturk.bulbiletini.domain.entities.requests.club.ClubGetDetailWithClubIdRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.club.ClubGetListWithTicketsRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.LoginRequest
 import com.alparslanturk.bulbiletini.domain.entities.requests.user.UpdateNotificationTokenRequest
+import com.alparslanturk.bulbiletini.domain.entities.responses.club.clubgetdetailwithclubid.ClubGetDetailWithClubIdResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.club.clubgetlistwithtickets.ClubGetListWithTicketsResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.login.LoginResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.user.updatenotificationtoken.UpdateNotificationTokenResponse
 import com.alparslanturk.bulbiletini.domain.entities.responses.usermessage.GetUserMessagesResponse
+import com.alparslanturk.bulbiletini.domain.usecases.club.ClubGetDetailWithClubIdUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.club.ClubGetListWithTicketsUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.user.LoginUseCase
 import com.alparslanturk.bulbiletini.domain.usecases.user.UpdateNotificationTokenUseCase
@@ -27,7 +30,8 @@ class HomeViewModel @Inject constructor(
     private val clubGetListWithTicketsUseCase: ClubGetListWithTicketsUseCase,
     private val getUserMessagesUseCase: GetUserMessagesUseCase,
     private val loginUseCase: LoginUseCase,
-    private val updateNotificationTokenUseCase: UpdateNotificationTokenUseCase
+    private val updateNotificationTokenUseCase: UpdateNotificationTokenUseCase,
+    private val clubGetDetailWithClubIdUseCase: ClubGetDetailWithClubIdUseCase,
 ) : BaseViewModel() {
 
     private val _clubsGetListWithTicketsFlow: MutableStateFlow<Result<ClubGetListWithTicketsResponse>> = MutableStateFlow(Result.Loading())
@@ -44,6 +48,19 @@ class HomeViewModel @Inject constructor(
 
     private val _updateNotificationTokenFlow: MutableStateFlow<Result<UpdateNotificationTokenResponse>> = MutableStateFlow(Result.Loading())
     val updateNotificationTokenFlow: StateFlow<Result<UpdateNotificationTokenResponse>> = _updateNotificationTokenFlow
+
+    private val _getClubDetailFlow: MutableStateFlow<Result<ClubGetDetailWithClubIdResponse>> = MutableStateFlow(Result.Loading())
+    val getClubDetailFlow: StateFlow<Result<ClubGetDetailWithClubIdResponse>> = _getClubDetailFlow
+
+    fun getClubDetail(clubGetDetailWithClubIdRequest: ClubGetDetailWithClubIdRequest) = viewModelScope.launch {
+        clubGetDetailWithClubIdUseCase(clubGetDetailWithClubIdRequest).collect {
+            when (it) {
+                is Result.Error -> _getClubDetailFlow.emit(it)
+                is Result.Loading -> _getClubDetailFlow.emit(it)
+                is Result.Success -> _getClubDetailFlow.emit(it)
+            }
+        }
+    }
 
     fun getClubsAndTickets(clubGetListWithTicketsRequest: ClubGetListWithTicketsRequest) = viewModelScope.launch {
         clubGetListWithTicketsUseCase(clubGetListWithTicketsRequest).collect {

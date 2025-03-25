@@ -18,11 +18,8 @@ import com.alparslanturk.bulbiletini.databinding.ActivityChatBinding
 import com.alparslanturk.bulbiletini.domain.entities.requests.usermessage.SendMessageRequest
 import com.alparslanturk.bulbiletini.ui.adapters.ChatAdapter
 import com.alparslanturk.bulbiletini.ui.base.BaseActivity
-import com.alparslanturk.bulbiletini.utils.addOnBackPressedListener
-import com.alparslanturk.bulbiletini.utils.getDataExtra
-import com.alparslanturk.bulbiletini.utils.showAlertDialogTheme
-import com.alparslanturk.bulbiletini.utils.toDate
-import com.alparslanturk.bulbiletini.utils.toString
+import com.alparslanturk.bulbiletini.ui.userdetail.UserDetailActivity
+import com.alparslanturk.bulbiletini.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -70,6 +67,7 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         binding.toolbar.apply {
             setTitle("${user.name} ${user.surname}")
             setBackButton { onBackClicked() }
+            setRightButton(R.drawable.ic_profile) { navigateToProfile() }
         }
     }
 
@@ -163,7 +161,16 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     private fun generateList(messages: List<Message>) {
         val list: ArrayList<Message> = arrayListOf()
 
+        val uniqueDates = mutableSetOf<String>()
+
         messages.forEach {
+            val formattedDate = it.createdDate.toDate(dateFormatType = DateFormatType.DATE_TIME)!!.toString(DateFormatType.DATE_WITH_DOT)
+
+            if (formattedDate !in uniqueDates) {
+                list.add(Message(it.fromUserId, it.toUserId, it.message, it.wasSeen, it.createdDate, ChatMessageType.DATE, formattedDate))
+                uniqueDates.add(formattedDate)
+            }
+
             if (it.fromUserId == getUserID()) {
                 list.add(Message(it.fromUserId, it.toUserId, it.message, it.wasSeen, it.createdDate, ChatMessageType.SENT, it.createdDate.toDate(dateFormatType = DateFormatType.DATE_TIME)!!.toString(DateFormatType.DATE_WITH_SPACES_SHORT)))
             } else {
@@ -185,6 +192,8 @@ class ChatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
         setResult(RESULT_OK)
         finish()
     }
+
+    private fun navigateToProfile() = startActivity(UserDetailActivity.createIntent(this, user, false))
 
     companion object {
 

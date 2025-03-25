@@ -10,7 +10,7 @@
         style="@style/ClickableView"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/bg_rounded"
         android:elevation="4dp"
         android:fontFamily="@font/lato_regular"
@@ -31,6 +31,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMessage"
         tools:text="16:32" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

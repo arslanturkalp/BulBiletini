@@ -27,6 +27,9 @@ class SplashViewModel @Inject constructor(
     private val _loginFlow: MutableStateFlow<Result<LoginResponse>> = MutableStateFlow(Result.Loading())
     val loginFlow: StateFlow<Result<LoginResponse>> = _loginFlow
 
+    private val _requiredUpdateFlow: MutableStateFlow<Result<ProjectSettingsGetWithNameResponse>> = MutableStateFlow(Result.Loading())
+    val requiredUpdateFlow: StateFlow<Result<ProjectSettingsGetWithNameResponse>> = _requiredUpdateFlow
+
     private var isFromAdmin: Boolean = false
 
     fun getIsFromAdmin() = isFromAdmin
@@ -54,6 +57,16 @@ class SplashViewModel @Inject constructor(
                 is Result.Error -> _projectSettingFlow.emit(it)
                 is Result.Loading -> _projectSettingFlow.emit(it)
                 is Result.Success -> _projectSettingFlow.emit(it)
+            }
+        }
+    }
+
+    fun isRequiredUpdate() = viewModelScope.launch {
+        projectSettingUseCase("IsRequiredUpdateAndroid").collect {
+            when (it) {
+                is Result.Error -> _requiredUpdateFlow.emit(it)
+                is Result.Loading -> _requiredUpdateFlow.emit(it)
+                is Result.Success -> _requiredUpdateFlow.emit(it)
             }
         }
     }
