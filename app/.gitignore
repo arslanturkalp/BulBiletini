@@ -87,3 +87,6 @@ lint/reports/
 
 # Android Profiling
 *.hprof
+
+# Other
+app/src/main/java/com/alparslanturk/bulbiletini/application/Constants.kt

@@ -62,8 +62,7 @@
                 android:background="@drawable/bg_rounded"
                 android:fontFamily="@font/lato_regular"
                 android:imeOptions="actionSend"
-                android:inputType="text"
-                android:maxLines="1"
+                android:inputType="textMultiLine"
                 android:padding="8dp"
                 android:textCursorDrawable="@drawable/color_cursor" />
 
